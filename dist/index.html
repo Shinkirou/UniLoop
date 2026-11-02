@@ -1,34 +1,2381 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UniLoop｜校園好物，循環相遇</title><style>
-:root{--green:#234b3c;--ink:#253a30;--muted:#758278;--cream:#f8f8f1;--line:#e3e8dc}*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,'Noto Sans TC',system-ui,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2}.nav{max-width:1240px;margin:auto;display:flex;align-items:center;gap:35px;padding:19px 26px}.brand{border:0;padding:0;background:transparent;font-family:inherit;cursor:pointer;font-size:25px;font-weight:850;letter-spacing:-1px;color:var(--green)}.brand span{color:#89a36e}.navlinks{display:flex;gap:25px;font-size:14px}.navlinks button,.ghost{border:0;background:none;color:inherit}.navright{margin-left:auto;display:flex;align-items:center;gap:15px;font-size:14px}.pill{background:var(--green);color:white;border:0;border-radius:8px;padding:11px 17px}.wrap{max-width:1240px;margin:auto;padding:28px 26px 70px}.hero{background:#dfead8;border-radius:16px;min-height:246px;padding:39px 48px;display:flex;align-items:center;justify-content:space-between;overflow:hidden}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#668363}.hero h1{font-size:38px;letter-spacing:1px;margin:13px 0}.hero p{color:#65776a;margin:0 0 22px}.hero-art{font-size:98px;transform:rotate(-8deg);filter:drop-shadow(0 10px 4px #bdcfb4)}.hero-art span{font-size:75px}.sectiontop{display:flex;align-items:end;justify-content:space-between;margin:39px 0 19px}.sectiontop h2{margin:0 0 6px;font-size:24px}.sectiontop p{margin:0;color:var(--muted);font-size:13px}.count{font-size:13px;color:var(--muted)}.layout{display:grid;grid-template-columns:235px 1fr;gap:25px}.filters{background:white;border:1px solid var(--line);border-radius:12px;padding:20px;height:max-content}.filterhead{display:flex;justify-content:space-between;align-items:center}.filterhead b{font-size:16px}.reset{border:0;background:none;color:#728c68;font-size:12px}.field{margin-top:22px}.field label{font-size:13px;font-weight:700;display:block;margin-bottom:9px}.field input,.field select,.search input,textarea,.form input,.form select{width:100%;border:1px solid #dce4d9;border-radius:7px;padding:10px;background:#fff;color:var(--ink);outline-color:#84a488}.range{display:flex;gap:7px;align-items:center}.range input{min-width:0}.hint{font-size:12px;color:#b14c45;margin:8px 0 0}.toolbar{display:flex;gap:10px;margin-bottom:18px}.search{flex:1;position:relative}.search input{padding:12px 14px}.toolbar select{border:1px solid #dce4d9;border-radius:7px;background:white;padding:0 12px;color:var(--ink)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.card{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.2s;cursor:pointer}.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px #29473115}.photo{height:166px;display:grid;place-items:center;font-size:72px;position:relative}.fav{position:absolute;right:11px;top:11px;background:white;border:0;border-radius:50%;width:34px;height:34px;color:#8a9b8b;font-size:20px}.fav.active{color:#d67368}.cardbody{padding:15px}.tags{display:flex;gap:5px;flex-wrap:wrap}.tag{font-size:11px;background:#eef4e9;color:#617d5d;padding:4px 7px;border-radius:4px}.tag.alt{background:#f9f1df;color:#9c7c40}.card h3{font-size:15px;margin:11px 0 7px}.school{color:#829087;font-size:12px}.bottom{display:flex;align-items:center;justify-content:space-between;margin-top:14px}.price{font-weight:800;color:var(--green);font-size:17px}.small{font-size:12px;color:#8a978d}.empty{grid-column:1/-1;text-align:center;padding:70px 20px;background:white;border:1px dashed #d5e1d3;border-radius:12px;color:#73867a}.empty b{display:block;color:var(--ink);margin:12px}.overlay{position:fixed;inset:0;background:#132b20a3;display:none;align-items:center;justify-content:center;padding:18px;z-index:3}.overlay.open{display:flex}.modal{background:white;border-radius:16px;max-width:720px;width:100%;max-height:90vh;overflow:auto;position:relative}.close{position:absolute;right:15px;top:12px;border:0;background:#ffffffd9;border-radius:50%;font-size:23px;width:36px;height:36px;z-index:1}.detail{display:grid;grid-template-columns:1fr 1fr}.detail .photo{height:100%;min-height:360px;font-size:110px}.detailbody{padding:35px}.detailbody h2{margin:15px 0}.detailbody p{font-size:14px;line-height:1.8;color:#68796e}.detailbody .pill{width:100%;margin-top:15px}.form{padding:34px;max-width:540px;margin:auto}.form h2{margin:0 0 8px}.form p{font-size:13px;color:#718178;line-height:1.7}.form label{display:block;margin:16px 0 7px;font-size:13px;font-weight:700}.form textarea{min-height:90px}.form .pill{width:100%;margin-top:18px}.notice{background:#f5f8f1;border-radius:8px;padding:11px;font-size:12px!important}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#254a39;color:#fff;padding:12px 20px;border-radius:8px;display:none;z-index:5}.footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:#8b998e;font-size:12px}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}}@media(max-width:600px){.nav{padding:14px 18px}.navright{gap:5px}.wrap{padding:18px 16px 50px}.hero{padding:28px;min-height:200px}.hero h1{font-size:27px}.hero-art{font-size:54px}.hero-art span{font-size:45px}.layout{display:block}.filters{margin-bottom:16px}.filters .fields{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.field{margin-top:14px}.grid{gap:10px}.photo{height:130px;font-size:56px}.cardbody{padding:11px}.toolbar{flex-wrap:wrap}.search{flex-basis:100%}.toolbar select{padding:10px}.detail{display:block}.detail .photo{min-height:200px;height:200px}.detailbody{padding:24px}}
+:root {
+  --green: #234b3c;
+  --green-hover: #1b3d30;
+  --ink: #253a30;
+  --muted: #758278;
+  --cream: #f8f8f1;
+  --line: #e3e8dc;
+  --card-bg: #ffffff;
+  --sage-bg: #eaf2e7;
+  --sage-border: #cbd9c9;
+}
 
-.category-tag{background:#e4eee5;color:#315f48;font-weight:700}.modal:has(.detail){max-width:900px}.detail{grid-template-columns:45% 55%}.detail-visual{min-height:520px;background:#e4ebdf}.book-stage,.object-stage{width:100%;height:100%;min-height:520px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.book-stage{background:linear-gradient(140deg,#dbe7d5,#c7d8bf)}.book-cover{position:relative;width:62%;aspect-ratio:0.72;background:#2f5c48;border-radius:3px 9px 9px 3px;box-shadow:-7px 8px 0 #244334,0 22px 32px #304f3c44;color:#f6f3e7;padding:10% 8%;overflow:hidden;display:flex;flex-direction:column}.cover-kicker{font-size:8px;letter-spacing:1.2px;opacity:.8}.book-cover strong{font-size:clamp(25px,3vw,38px);letter-spacing:3px;line-height:1.4;margin-top:16%}.cover-rule{height:2px;width:36px;background:#e5cc8d;margin:13px 0}.cover-sub{font-size:9px;line-height:1.7;letter-spacing:1px}.cover-shape{position:absolute;right:-20px;bottom:-45px;font-size:150px;color:#b7cfaa;opacity:.4}.visual-caption{position:absolute;left:18px;bottom:16px;font-size:11px;letter-spacing:1px;color:#617568}.object-icon{font-size:clamp(110px,15vw,180px);filter:drop-shadow(0 14px 12px #35493c24)}.detailbody{padding:42px 42px 32px}.detailbody h2{font-size:25px;line-height:1.45;margin:18px 0 10px}.detailbody .price{font-size:21px}.detailbody .description{line-height:1.9;margin:20px 0 23px}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0}.info-item span,.wish span{display:block;font-size:12px;color:#88998b;margin-bottom:7px}.info-item strong,.wish strong{font-size:13px;font-weight:600;line-height:1.6}.wish{margin:19px 0 0}.detailbody .pill{margin-top:24px}.detailbody .disclaimer{font-size:12px;color:#8c9b90;margin:12px 0 0}.close{right:14px;top:14px}@media(max-width:600px){.detail-visual,.book-stage,.object-stage{min-height:250px;height:250px}.book-cover{height:205px;width:145px;padding:20px 17px}.book-cover strong{font-size:23px;margin-top:18px}.cover-shape{font-size:95px;bottom:-30px}.object-icon{font-size:110px}.detailbody{padding:27px 24px 30px}.info-grid{gap:16px}.detailbody h2{font-size:22px}}
-.card-tags{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.method-tags{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.method-買賣{background:#e7f0fb;color:#35678e}.method-交換{background:#f3eafb;color:#775795}.method-贈送{background:#fff0df;color:#a26830}#market{scroll-margin-top:95px}@media(max-width:600px){#market{scroll-margin-top:75px}.card-tags{gap:4px}.method-tags{gap:3px}.card-tags .tag{font-size:10px;padding:4px 5px}}
+* {
+  box-sizing: border-box;
+}
 
-.filter-toggle{padding:0;border:0;background:transparent;color:inherit;text-align:left;display:flex;align-items:center;gap:5px;cursor:default}.filter-arrow{display:none}.product-photo{position:relative;overflow:hidden;font-size:initial;background-color:#e8dbca;background-repeat:no-repeat;background-position:center;background-size:contain}.product-photo.item-1{background-image:url('./products/1.jpg')}.product-photo.item-2{background-image:url('./products/2.jpg')}.product-photo.item-3{background-image:url('./products/3.jpg')}.product-photo.item-4{background-image:url('./products/4.jpg')}.product-photo.item-5{background-image:url('./products/5.jpg')}.product-photo.item-6{background-image:url('./products/6.jpg')}.product-photo.item-7{background-image:url('./products/7.jpg')}.product-photo.item-8{background-image:url('./products/8.jpg')}.product-photo .fav,.product-photo .visual-caption{z-index:1}.visual-caption{background:#ffffffdf;border-radius:4px;padding:5px 8px}.requests{max-width:650px}.request-list{max-height:48vh;overflow-y:auto;margin:20px 0}.request-card{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:10px}.request-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.request-top strong{font-size:14px}.request-status{color:#58785d;background:#edf5e9;border-radius:5px;padding:5px 7px;font-size:11px;white-space:nowrap}.request-meta{font-size:12px;color:#849186;margin-top:8px}.request-card p{white-space:pre-wrap;overflow-wrap:anywhere;margin:10px 0 0;color:#52675a}.request-empty{text-align:center;background:#f7f9f4;border-radius:10px;padding:32px 12px;color:#607467;line-height:2}.request-empty small{color:#8a998c}.continue-btn{width:100%;margin-top:14px}.filter-toggle:focus-visible{outline:2px solid #52775b;outline-offset:4px}
-@media(max-width:600px){.filter-toggle{cursor:pointer}.filter-arrow{display:inline-flex;width:24px;height:24px;align-items:center;justify-content:center;flex:none}.filter-arrow svg{display:block;width:23px;height:23px;transform-origin:center;transition:transform .2s}.filters-open .filter-arrow svg{transform:rotate(180deg)}.filters .fields{display:none}.filters.filters-open .fields{display:grid}.records-nav{white-space:nowrap}.nav{gap:10px}.navright{font-size:12px}.brand{font-size:22px}.request-top{align-items:flex-start;flex-direction:column;gap:6px}}
-.listed-date{margin-top:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.listed-date span,.listed-date small{font-size:12px;color:#88998b}.listed-date strong{font-size:13px;font-weight:600}.seller-form{max-width:720px}.seller-actions{display:flex;gap:10px;align-items:center}.seller-actions .pill{width:auto;margin:0}.outline-btn,.manage-actions button{border:1px solid #cbd9c9;border-radius:7px;background:white;color:#315a43;padding:10px 14px}.manage-list{margin:20px 0}.manage-card{border:1px solid var(--line);border-radius:10px;padding:16px;margin:10px 0}.manage-top{display:flex;justify-content:space-between;gap:10px}.manage-status{font-size:12px;background:#eaf2e7;color:#42664c;border-radius:5px;padding:4px 8px}.manage-card p{margin:8px 0}.manage-actions{display:flex;align-items:center;justify-content:space-between;gap:10px}.manage-actions label{margin:0;font-weight:400}.manage-actions select{width:auto;margin-left:5px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.check-row{display:flex;gap:18px}.check-row label{display:flex;align-items:center;gap:5px;font-weight:400;margin:0}.check-row input{width:auto}.seller-form [hidden]{display:none}.pill:disabled{opacity:.55;cursor:not-allowed}@media(max-width:600px){.mine-nav{white-space:nowrap}.nav{gap:5px}.navright{gap:1px}.navright .ghost{padding:6px 3px}.form-grid{grid-template-columns:1fr 1fr}.seller-form{padding:25px 20px}.manage-actions{flex-wrap:wrap}}
-.about-link{border:0;background:none;color:inherit;font-size:14px;padding:8px 0;white-space:nowrap}.navright{position:relative}.account-trigger{background:none;padding:0;border:0;display:flex;align-items:center}.account-avatar{width:42px;height:42px;border:2px solid #b6cbb1;border-radius:50%;display:grid;place-items:center;background:#eff5eb;color:#53775d;overflow:hidden}.account-avatar img{width:100%;height:100%;object-fit:cover}.account-menu[hidden]{display:none}.account-menu{position:absolute;right:0;top:calc(100% + 12px);width:224px;border:1px solid var(--line);background:white;border-radius:12px;box-shadow:0 12px 30px #1e3a2b26;padding:7px;z-index:4}.account-menu-header{padding:10px 12px 13px;display:flex;flex-direction:column;gap:4px;border-bottom:1px solid var(--line)}.account-menu-header span{font-size:11px;color:#809185}.account-menu-header strong{font-size:14px;overflow:hidden;text-overflow:ellipsis}.account-menu button{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 12px;border:0;background:white;text-align:left;border-radius:7px;color:var(--ink);font-size:14px}.account-menu button:hover,.account-menu button:focus-visible{background:#f0f5ed}.account-menu .account-logout{border-top:1px solid var(--line);border-radius:0;margin-top:4px;color:#758478}.hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.hero-sell{border:1px solid #52775b;color:var(--green);background:transparent;border-radius:8px;padding:10px 16px}.account-form{max-width:540px}.account-form .pill{width:100%}.text-action,.guest-btn{display:block;width:100%;border:0;background:transparent;color:#315f49;margin-top:16px;padding:8px;font-size:13px}.guest-btn{border:1px solid #b6cab8;border-radius:8px;font-weight:700}.guest-note{text-align:center;font-size:12px!important;color:#829388!important;margin-bottom:0}.account-form input[type=file]{font-size:12px}@media(max-width:600px){.nav{gap:18px}.about-link{font-size:13px}.navright{margin-left:auto}.account-avatar{width:38px;height:38px}.account-menu{position:fixed;right:16px;top:64px;width:min(260px,calc(100vw - 32px))}.hero-actions{gap:8px}.hero-sell{padding:10px 12px;font-size:13px}.hero-actions .pill{font-size:13px}}
-.account-menu [hidden]{display:none!important}.hero-actions .pill,.hero-actions .hero-sell{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:180px;min-height:46px;padding:10px 12px;font-size:14px;line-height:1.25}.hero-actions .hero-sell{background:#b9cfb0;color:#234b3c;border:1px solid #93ae8d}.own-card{background:#f0f6ed;border-color:#9cbf99}.own-badge{display:inline-block;vertical-align:middle;margin-left:3px;padding:3px 6px;border-radius:4px;background:#dbeedc;color:#316744;font-size:10px;font-weight:700}.manage-card{position:relative}.remove-one{position:absolute;right:-7px;top:-9px;background:#c9554e;color:#fff;border:2px solid #fff;width:28px;height:28px;border-radius:50%;font-size:22px;line-height:20px;padding:0;box-shadow:0 2px 6px #3333}.manage-card:has(.remove-one) .manage-status{margin-right:18px}.seller-actions .removal-toggle{background:#b84b44;color:#fff}.seller-actions .removal-toggle.is-removing{background:#7d8782}.seller-actions .pill{min-width:142px}.seller-actions .pill{min-height:42px;padding:10px 14px}.seller-actions .remove-confirm{background:#b84b44}.condition-field{grid-column:1 / -1}.condition-field label{display:flex;justify-content:space-between;align-items:center}.condition-field strong{color:#2c6448}.condition-field input[type=range]{padding:0;accent-color:#477952}.range-captions{display:flex;justify-content:space-between;color:#819287;font-size:11px;margin-top:4px}@media(max-width:600px){.hero-actions .pill,.hero-actions .hero-sell{width:168px;min-height:44px;font-size:13px}.seller-actions .pill{font-size:13px}}
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Inter, 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
-.extra-link{border:0;background:none;color:#346449;padding:0;cursor:pointer;text-decoration:underline;font-weight:600}.extra-panel{border-top:1px solid #e3e8dc;margin-top:20px;padding-top:16px}.extra-list{display:grid;gap:10px}.extra-card{border:1px solid #e3e8dc;background:#fafbf7;border-radius:10px;padding:12px;margin:8px 0}.extra-card p{margin:6px 0;overflow-wrap:anywhere}.extra-card small{color:#758278}.extra-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.extra-controls button,.extra-btn{border:1px solid #cbd9c9;background:white;color:#315a43;border-radius:7px;padding:8px 12px;cursor:pointer}.extra-thumb{width:68px;height:68px;object-fit:cover;border-radius:8px;background:#e8dbca;float:left;margin:0 12px 4px 0}.gallery-nav{display:flex;justify-content:center;gap:8px;margin:10px 0}.gallery-nav button{border:1px solid #cbd9c9;border-radius:6px;background:white;padding:6px 10px;color:#315a43}.gallery-nav button[aria-current=true]{background:#234b3c;color:white}.qa-reply{margin:8px 0 4px 16px;padding-left:10px;border-left:3px solid #cbd9c9}.inline-feedback{color:#315a43;background:#eaf2e7;border-radius:6px;padding:8px;margin:10px 0}.seller-products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.seller-item{border:1px solid #e3e8dc;background:white;padding:10px;border-radius:9px;text-align:left;cursor:pointer}.seller-item img{width:100%;height:125px;object-fit:contain;background:#e8dbca}.image-choice{display:flex;align-items:center;gap:8px;margin:5px 0!important}.image-choice input{width:auto}.image-choice img{width:50px;height:50px;object-fit:cover;border-radius:5px}@media(max-width:600px){.seller-products{grid-template-columns:repeat(2,minmax(0,1fr))}.extra-thumb{width:56px;height:56px}.gallery-nav{margin:4px 0}}
+button, input, select, textarea {
+  font: inherit;
+}
 
-.account-trigger{position:relative}.account-unread{position:absolute;right:-5px;top:-5px;min-width:19px;height:19px;padding:0 4px;display:grid;place-items:center;border-radius:999px;background:#c8433b;color:white;border:2px solid white;font-size:10px;line-height:1;font-weight:700}.account-unread[hidden]{display:none}.account-menu .reset-menu{border-top:1px solid var(--line);border-radius:0;margin-top:4px;color:#758478}.account-menu .account-logout{border-top:0;margin-top:0}.reset-actions{display:flex;gap:10px;margin-top:20px}.reset-actions button{width:50%;min-height:44px;margin:0!important}.reset-actions .reset-confirm{background:#b84b44;color:#fff;border:0;border-radius:8px}.notification-link{display:block;width:100%;text-align:left;border:0;background:transparent;color:inherit;cursor:pointer;padding:0}.notification-link:hover{text-decoration:underline}.notification-missing{color:#758278}.qa-highlight{outline:2px solid #a8c5a7;outline-offset:3px}
+button {
+  cursor: pointer;
+}
 
-.chat-messages{display:flex;flex-direction:column;gap:9px;max-height:36vh;overflow-y:auto;padding:10px 2px}.chat-bubble{max-width:85%;align-self:flex-start;background:#f1f5ee;border-radius:12px;padding:9px 12px;overflow-wrap:anywhere}.chat-bubble.mine{align-self:flex-end;background:#dcebd9}.chat-bubble p{margin:3px 0;white-space:pre-wrap}.chat-bubble small{font-size:11px;color:#718178}.transaction-status{display:inline-block;background:#eaf2e7;color:#315a43;padding:5px 9px;border-radius:7px}.transaction-actions{display:flex;gap:8px;flex-wrap:wrap}.transaction-actions button{flex:1;min-width:130px}.gallery-nav button{min-width:38px}.chat-notice{font-size:12px!important}
+/* 1. 固定頂欄 (Fixed Top Navbar) */
+header {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  box-shadow: 0 1px 4px rgba(35, 75, 60, 0.04);
+}
 
-.detail-visual{position:relative;align-self:start;min-height:0;height:min(72vh,620px)}.detail-visual .object-stage{height:100%;min-height:0}.gallery-nav{position:absolute;inset:0;margin:0;pointer-events:none;display:flex;align-items:center;justify-content:space-between}.gallery-nav button{pointer-events:auto;position:absolute;top:50%;transform:translateY(-50%);border:0;border-radius:50%;width:42px;height:42px;min-width:42px;background:#17271e88;color:#fff;font-size:30px;line-height:1;padding:0;display:grid;place-items:center}.gallery-nav button:hover,.gallery-nav button:focus-visible{background:#17271ec9}.gallery-prev{left:12px}.gallery-next{right:12px}.gallery-nav #gallery-count{position:absolute;bottom:14px;right:14px;border-radius:20px;background:#17271e88;color:white;font-size:12px;padding:4px 9px}.chat-float{position:fixed;right:24px;bottom:24px;width:58px;height:58px;border:0;border-radius:50%;background:#234b3c;color:#fff;box-shadow:0 5px 20px #17271e55;z-index:5;cursor:pointer;display:grid;place-items:center}.chat-float svg{width:26px;height:26px}.chat-float-badge{position:absolute;right:-3px;top:-3px;background:#c8433b;border:2px solid white;border-radius:20px;color:white;font-size:10px;min-width:19px;padding:2px}.chat-float-badge[hidden]{display:none}.chat-list-item{display:block;width:100%;text-align:left;background:white;border:1px solid #e3e8dc;border-radius:10px;padding:13px;cursor:pointer;margin:9px 0;color:#253a30}.chat-list-item strong{display:block;margin-bottom:4px}.chat-list-item small{color:#758278}.chat-system{text-align:center;align-self:center;color:#718178;font-size:12px;background:#eef1eb;border-radius:20px;padding:5px 11px}.chat-action-bar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.form .chat-action-bar button,.chat-action-bar .pill,.chat-action-bar .extra-btn{flex:1 1 150px;width:auto;min-height:43px;margin:0;font-size:14px;border-radius:8px;padding:10px 12px}.seller-item{display:flex;flex-direction:column}.seller-item .seller-product-open{border:0;background:transparent;padding:0;text-align:left;color:inherit;cursor:pointer;width:100%}.seller-item .seller-chat-btn{margin-top:auto;align-self:flex-end;border:0;background:#e8f1e7;color:#315a43;border-radius:7px;padding:8px 10px;cursor:pointer;font-size:12px}@media(max-width:600px){.detail-visual{height:min(48vh,380px);min-height:220px}.chat-float{width:52px;height:52px;right:16px;bottom:16px}.gallery-nav button{width:38px;height:38px;min-width:38px}}
+.nav {
+  max-width: 1240px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 13px 26px;
+}
 
-.detail{background:linear-gradient(to right,#e8dbca 50%,#fff 50%)}.chat-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.chat-header .chat-heading{min-width:0}.chat-header .chat-heading h2{overflow-wrap:anywhere}.chat-header-actions{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap}.form .chat-header-actions button{width:auto;min-height:40px;min-width:100px;margin:0;padding:9px 12px;border-radius:8px;font-size:13px;line-height:1.35}.form .chat-header-actions .decline-btn{border:1px solid #c6635c;background:#fff;color:#a7423d}.form .chat-header-actions .cancel-btn{border:1px solid #cbd9c9;background:#fff;color:#536d5b}.cancel-reason-actions{display:flex;gap:10px;margin-top:14px}.form .cancel-reason-actions button{width:50%;min-height:44px;margin:0}.form .cancel-reason-actions .cancel-confirm{background:#b84b44;color:white;border:0;border-radius:8px}@media(max-width:600px){.detail{background:#fff}.chat-header{flex-wrap:wrap}.chat-header-actions{width:100%;justify-content:flex-start}.form .chat-header-actions button{flex:1;min-width:120px}}
+.brand {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 850;
+  letter-spacing: -0.8px;
+  color: var(--green);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: opacity .15s ease;
+}
 
-/* Keep the photo background aligned with the actual grid and give text its own padding. */
-.detail{background:#e8dbca;grid-template-columns:minmax(0,45fr) minmax(0,55fr)}.detailbody{background:#fff;min-width:0;padding:42px 42px 36px}.detailbody .description{line-height:1.9}.detailbody .info-grid{gap:18px 20px}@media(max-width:600px){.detail{background:#fff}.detailbody{padding:28px 24px 32px}.detailbody .info-grid{gap:16px}}
+.brand:hover {
+  opacity: .88;
+}
 
-.card.reserved-card{background:#fff7d9;border-color:#d8bd6b}.card.reserved-card .cardbody{background:#fff7d9}.card.reserved-card .reserved-badge{background:#f4dc92;color:#755400;font-weight:700}.manage-card.reserved-card{background:#fff7d9;border-color:#d8bd6b}
+.brand span {
+  color: #7b9c61;
+}
 
-.detail-visual{position:sticky;top:0;height:min(90vh,900px)}
-.detail-visual .object-stage{background-position:center center}
-.visual-caption{background:transparent;border-radius:0;padding:0;left:16px;bottom:14px;text-shadow:0 1px 2px #fff}
-@media(max-width:600px){.detail-visual{position:relative;top:auto;height:min(48vh,380px)}}
+.about-link {
+  border: 0;
+  background: none;
+  color: #42594a;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+
+.about-link:hover {
+  background: #edf5ea;
+  color: var(--green);
+}
+
+.navlinks {
+  display: flex;
+  gap: 25px;
+  font-size: 14px;
+}
+
+.navlinks button, .ghost {
+  border: 0;
+  background: none;
+  color: inherit;
+}
+
+.navright {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  font-size: 14px;
+}
+
+.account-trigger {
+  background: none;
+  padding: 0;
+  border: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+}
+
+.account-trigger:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+.account-avatar {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #b6cbb1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #eff5eb;
+  color: #53775d;
+  overflow: hidden;
+  transition: border-color .15s ease;
+}
+
+.account-trigger:hover .account-avatar {
+  border-color: var(--green);
+}
+
+.account-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.account-unread {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 4px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #c8433b;
+  color: white;
+  border: 2px solid white;
+  font-size: 10.5px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.account-unread[hidden] {
+  display: none;
+}
+
+.account-menu[hidden] {
+  display: none !important;
+}
+
+.account-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 228px;
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(30, 58, 43, 0.16);
+  padding: 8px;
+  z-index: 40;
+}
+
+.account-menu-header {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.account-menu-header span {
+  font-size: 11px;
+  color: #809185;
+}
+
+.account-menu-header strong {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--green);
+}
+
+.account-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  background: white;
+  text-align: left;
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+
+.account-menu button:hover, .account-menu button:focus-visible {
+  background: #f0f6ed;
+  color: var(--green);
+}
+
+.account-menu .reset-menu {
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  margin-top: 4px;
+  color: #758478;
+}
+
+.account-menu .account-logout {
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  margin-top: 2px;
+  color: #c44c42;
+}
+
+.pill {
+  background: var(--green);
+  color: white;
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 18px;
+  font-weight: 600;
+  transition: all .15s ease;
+}
+
+.pill:hover {
+  background: var(--green-hover);
+}
+
+.pill:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.wrap {
+  max-width: 1240px;
+  margin: auto;
+  padding: 28px 26px 70px;
+}
+
+/* 2. 首頁 Hero 與 CTA (Homepage Hero & CTA) */
+.hero {
+  background: linear-gradient(135deg, #e4eee0 0%, #d6e6d1 100%);
+  border: 1px solid #c8dcc3;
+  border-radius: 20px;
+  min-height: 240px;
+  padding: 38px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(35, 75, 60, 0.03);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  font-weight: 800;
+  color: #426343;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #bfd7b7;
+  border-radius: 20px;
+  padding: 4px 10px;
+  margin-bottom: 8px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: 850;
+  letter-spacing: -0.5px;
+  color: var(--green);
+  margin: 10px 0 8px;
+  line-height: 1.25;
+}
+
+.hero p {
+  color: #4d6353;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 24px;
+  max-width: 520px;
+}
+
+.hero-art {
+  font-size: 92px;
+  transform: rotate(-6deg);
+  filter: drop-shadow(0 12px 10px rgba(189, 207, 180, 0.6));
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.hero-art span {
+  font-size: 72px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-actions .pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 172px;
+  min-height: 48px;
+  padding: 11px 22px;
+  font-size: 14.5px;
+  font-weight: 700;
+  border-radius: 10px;
+  background: var(--green);
+  color: white;
+  border: 0;
+  box-shadow: 0 4px 14px rgba(35, 75, 60, 0.22);
+  transition: all .15s ease;
+}
+
+.hero-actions .pill:hover {
+  background: var(--green-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(35, 75, 60, 0.28);
+}
+
+.hero-actions .hero-sell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 172px;
+  min-height: 48px;
+  padding: 11px 22px;
+  font-size: 14.5px;
+  font-weight: 700;
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--green);
+  border: 1.5px solid var(--green);
+  box-shadow: 0 2px 6px rgba(35, 75, 60, 0.05);
+  transition: all .15s ease;
+  cursor: pointer;
+}
+
+.hero-actions .hero-sell:hover {
+  background: #f0f7ed;
+  border-color: var(--green-hover);
+  transform: translateY(-1px);
+}
+
+.sectiontop {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin: 39px 0 19px;
+}
+
+.sectiontop h2 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--green);
+}
+
+.sectiontop p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+.count {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+#market {
+  scroll-margin-top: 95px;
+}
+
+/* 5. 篩選與排版 (Filters & Layout) */
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+}
+
+.filters {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+  height: max-content;
+  box-shadow: 0 1px 3px rgba(35, 75, 60, 0.02);
+}
+
+.filterhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-toggle {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+  font-size: 15px;
+  color: var(--green);
+}
+
+.filter-toggle b {
+  font-size: 15.5px;
+  font-weight: 700;
+}
+
+.filter-toggle:focus-visible {
+  outline: 2px solid #52775b;
+  outline-offset: 4px;
+}
+
+.filter-arrow {
+  display: none;
+}
+
+.reset {
+  border: 0;
+  background: none;
+  color: #63845e;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color .15s ease, background .15s ease;
+}
+
+.reset:hover {
+  color: var(--green);
+  background: #edf5eb;
+}
+
+.field {
+  margin-top: 20px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+  color: #3b5042;
+}
+
+.field input, .field select, .search input, textarea, .form input, .form select {
+  width: 100%;
+  border: 1px solid #dce4d9;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.field input:focus, .field select:focus, .search input:focus, textarea:focus, .form input:focus, .form select:focus {
+  border-color: #84a488;
+  box-shadow: 0 0 0 3px rgba(132, 164, 136, 0.2);
+}
+
+.range {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.range input {
+  min-width: 0;
+  flex: 1;
+}
+
+.hint {
+  font-size: 12px;
+  color: #b14c45;
+  margin: 8px 0 0;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.search {
+  flex: 1;
+  position: relative;
+}
+
+.search input {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-radius: 9px;
+}
+
+.toolbar select {
+  border: 1px solid #dce4d9;
+  border-radius: 9px;
+  background: white;
+  padding: 0 14px;
+  color: var(--ink);
+  font-size: 13.5px;
+}
+
+/* 3. 商品卡片資訊層級及交易標籤 (Product Card Hierarchy & Tags) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(35, 75, 60, 0.08);
+  border-color: #cbd8c5;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.photo {
+  height: 172px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background-color: #f1ede5;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border-bottom: 1px solid #edf1ea;
+}
+
+.product-photo {
+  position: relative;
+  overflow: hidden;
+  font-size: initial;
+  background-color: #e8dbca;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.product-photo.item-1{background-image:url('./products/1.jpg')}
+.product-photo.item-2{background-image:url('./products/2.jpg')}
+.product-photo.item-3{background-image:url('./products/3.jpg')}
+.product-photo.item-4{background-image:url('./products/4.jpg')}
+.product-photo.item-5{background-image:url('./products/5.jpg')}
+.product-photo.item-6{background-image:url('./products/6.jpg')}
+.product-photo.item-7{background-image:url('./products/7.jpg')}
+.product-photo.item-8{background-image:url('./products/8.jpg')}
+
+.product-photo .fav, .product-photo .visual-caption {
+  z-index: 1;
+}
+
+.fav {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  color: #889a8c;
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform .15s ease, color .15s ease;
+}
+
+.fav:hover {
+  transform: scale(1.1);
+}
+
+.fav.active {
+  color: #d65b50;
+}
+
+.cardbody {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  background: #eef4e9;
+  color: #4b6b47;
+  padding: 3px 7px;
+  border-radius: 5px;
+  line-height: 1.35;
+}
+
+.tag.alt {
+  background: #f9f1df;
+  color: #9c7c40;
+}
+
+.category-tag {
+  background: #e7f1e4;
+  color: #275239;
+  font-weight: 700;
+  border: 1px solid #d5e5cf;
+}
+
+.method-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.method-買賣 {
+  background: #e8f1fa;
+  color: #265983;
+  border: 1px solid #d4e4f5;
+}
+
+.method-交換 {
+  background: #f4ecfb;
+  color: #6a468e;
+  border: 1px solid #e7d8f4;
+}
+
+.method-贈送 {
+  background: #fff2e0;
+  color: #985a1e;
+  border: 1px solid #fae1c3;
+}
+
+.own-card {
+  background: #f5faf3;
+  border-color: #a7cca4;
+}
+
+.own-badge {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #d6ebd4;
+  color: #235934;
+  font-size: 10.5px;
+  font-weight: 700;
+  border: 1px solid #b7dab4;
+}
+
+.card.reserved-card {
+  background: #fffdf2;
+  border-color: #dfcb89;
+}
+
+.card.reserved-card .cardbody {
+  background: #fffdf2;
+}
+
+.card.reserved-card .reserved-badge, .reserved-badge {
+  background: #fef0c7;
+  color: #8c5a00;
+  font-size: 10.5px;
+  font-weight: 700;
+  border: 1px solid #f6db8d;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.manage-card.reserved-card {
+  background: #fffdf2;
+  border-color: #dfcb89;
+}
+
+.card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 4px 0 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.9em;
+}
+
+.school {
+  color: #728477;
+  font-size: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bottom {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f0f4ec;
+}
+
+.price {
+  font-weight: 850;
+  color: var(--green);
+  font-size: 17.5px;
+  font-feature-settings: 'tnum';
+}
+
+.small {
+  font-size: 11.5px;
+  color: #5c7463;
+  background: #f2f6f0;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid #e1e9dc;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 70px 20px;
+  background: white;
+  border: 1px dashed #d5e1d3;
+  border-radius: 14px;
+  color: #73867a;
+}
+
+.empty b {
+  display: block;
+  color: var(--ink);
+  margin: 12px 0 6px;
+  font-size: 16px;
+}
+
+/* Modals & Overlays */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(19, 43, 32, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 60;
+}
+
+.overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: white;
+  border-radius: 18px;
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(19, 43, 32, 0.28);
+  border: 1px solid var(--line);
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  color: #495d4f;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.close:hover {
+  background: #edf4eb;
+  color: var(--green);
+  transform: scale(1.06);
+}
+
+/* 4. 商品詳情多圖區 (Product Detail Multi-image Gallery / Area) */
+.modal:has(.detail) {
+  max-width: 920px;
+  width: 100%;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 46fr) minmax(0, 54fr);
+  background: #fff;
+  min-height: 520px;
+}
+
+.detail-visual {
+  position: relative;
+  background: #ece7de;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100%;
+  min-height: 520px;
+}
+
+.detail-visual .object-stage {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.book-stage, .object-stage {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-stage {
+  background: linear-gradient(140deg, #dbe7d5, #c7d8bf);
+}
+
+.book-cover {
+  position: relative;
+  width: 62%;
+  aspect-ratio: 0.72;
+  background: #2f5c48;
+  border-radius: 3px 9px 9px 3px;
+  box-shadow: -7px 8px 0 #244334, 0 22px 32px #304f3c44;
+  color: #f6f3e7;
+  padding: 10% 8%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-kicker {
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  opacity: .8;
+}
+
+.book-cover strong {
+  font-size: clamp(25px, 3vw, 38px);
+  letter-spacing: 3px;
+  line-height: 1.4;
+  margin-top: 16%;
+}
+
+.cover-rule {
+  height: 2px;
+  width: 36px;
+  background: #e5cc8d;
+  margin: 13px 0;
+}
+
+.cover-sub {
+  font-size: 9px;
+  line-height: 1.7;
+  letter-spacing: 1px;
+}
+
+.cover-shape {
+  position: absolute;
+  right: -20px;
+  bottom: -45px;
+  font-size: 150px;
+  color: #b7cfaa;
+  opacity: .4;
+}
+
+.visual-caption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  font-size: 11px;
+  color: #4a5e50;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.object-icon {
+  font-size: clamp(110px, 15vw, 180px);
+  filter: drop-shadow(0 14px 12px #35493c24);
+}
+
+.gallery-nav {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+}
+
+.gallery-nav button {
+  pointer-events: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  background: rgba(23, 39, 30, 0.72);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all .15s ease;
+}
+
+.gallery-nav button:hover, .gallery-nav button:focus-visible {
+  background: rgba(23, 39, 30, 0.92);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.gallery-prev {
+  left: 14px;
+}
+
+.gallery-next {
+  right: 14px;
+}
+
+.gallery-nav #gallery-count {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  border-radius: 20px;
+  background: rgba(23, 39, 30, 0.72);
+  backdrop-filter: blur(4px);
+  color: white;
+  font-size: 11.5px;
+  font-weight: 700;
+  font-feature-settings: 'tnum';
+  padding: 4px 10px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.detailbody {
+  padding: 36px 38px 32px;
+  background: #fff;
+  min-width: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.detailbody h2 {
+  font-size: 24px;
+  font-weight: 850;
+  color: var(--green);
+  line-height: 1.35;
+  margin: 12px 0 8px;
+}
+
+.detailbody .price {
+  font-size: 22px;
+  font-weight: 850;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+
+.detailbody .description, .detailbody p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #4e6053;
+  margin: 12px 0 20px;
+  white-space: pre-wrap;
+}
+
+.detailbody .pill {
+  width: 100%;
+  min-height: 46px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+  margin: 16px 0;
+}
+
+.info-item span, .wish span {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #728577;
+  margin-bottom: 4px;
+}
+
+.info-item strong, .wish strong {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.wish {
+  margin: 14px 0;
+  background: #f4f8f1;
+  border: 1px solid #dce8d9;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.listed-date {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.listed-date span, .listed-date small {
+  font-size: 12px;
+  color: #88998b;
+}
+
+.listed-date strong {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.detailbody .disclaimer {
+  font-size: 11.5px;
+  color: #8c9b90;
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+/* Forms & Common Modals */
+.form {
+  padding: 34px;
+  max-width: 540px;
+  margin: auto;
+}
+
+.form h2 {
+  margin: 0 0 8px;
+  color: var(--green);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.form p {
+  font-size: 13.5px;
+  color: #55675c;
+  line-height: 1.7;
+}
+
+.form label {
+  display: block;
+  margin: 16px 0 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3b5042;
+}
+
+.form textarea {
+  min-height: 90px;
+}
+
+.form .pill {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.notice {
+  background: #f4f8f1;
+  border: 1px solid #dbe6d8;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 12px !important;
+  color: #4b6352 !important;
+  line-height: 1.6;
+}
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #254a39;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: none;
+  z-index: 70;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 28px 20px;
+  text-align: center;
+  color: #7b8e81;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+/* 6. 個人賣場、聊天和通知 (Seller Profile/Shop, Chat, Notifications) */
+.seller-form {
+  max-width: 700px;
+}
+
+.seller-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.seller-actions .pill {
+  width: auto;
+  min-height: 42px;
+  padding: 10px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.outline-btn, .manage-actions button {
+  border: 1px solid #cbd9c9;
+  border-radius: 8px;
+  background: white;
+  color: #315a43;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.outline-btn:hover, .manage-actions button:hover {
+  background: #edf5eb;
+  border-color: #a8c4a4;
+}
+
+.manage-list {
+  margin: 16px 0;
+}
+
+.manage-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+  background: white;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.manage-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.manage-top strong {
+  font-size: 14.5px;
+  color: var(--ink);
+}
+
+.manage-status {
+  font-size: 11.5px;
+  font-weight: 700;
+  background: #eaf3e7;
+  color: #2e593d;
+  border-radius: 6px;
+  padding: 4px 9px;
+}
+
+.manage-card p {
+  margin: 8px 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.manage-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f2f5ef;
+}
+
+.manage-actions label {
+  margin: 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.manage-actions select {
+  width: auto;
+  margin-left: 5px;
+  min-height: 36px;
+  border-radius: 7px;
+  border: 1px solid #cbd9c9;
+  padding: 5px 8px;
+  font-size: 13px;
+}
+
+.remove-one {
+  position: absolute;
+  right: -7px;
+  top: -9px;
+  background: #c9554e;
+  color: #fff;
+  border: 2px solid #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 20px;
+  padding: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.manage-card:has(.remove-one) .manage-status {
+  margin-right: 18px;
+}
+
+.seller-actions .removal-toggle {
+  background: #b84b44;
+  color: #fff;
+}
+
+.seller-actions .removal-toggle.is-removing {
+  background: #7d8782;
+}
+
+.seller-actions .remove-confirm {
+  background: #b84b44;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 12px;
+}
+
+.check-row {
+  display: flex;
+  gap: 18px;
+}
+
+.check-row label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;
+  margin: 0;
+  font-size: 13.5px;
+}
+
+.check-row input {
+  width: auto;
+}
+
+.condition-field {
+  grid-column: 1 / -1;
+}
+
+.condition-field label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.condition-field strong {
+  color: #2c6448;
+}
+
+.condition-field input[type=range] {
+  padding: 0;
+  accent-color: #477952;
+}
+
+.range-captions {
+  display: flex;
+  justify-content: space-between;
+  color: #819287;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.seller-products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.seller-item {
+  border: 1px solid var(--line);
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all .15s ease;
+}
+
+.seller-item:hover {
+  border-color: #cbd8c5;
+  box-shadow: 0 4px 12px rgba(35, 75, 60, 0.06);
+}
+
+.seller-item img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  height: auto;
+  object-fit: contain;
+  background: #f1ede5;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.seller-item strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.seller-item p {
+  font-size: 14px;
+  font-weight: 850;
+  color: var(--green);
+  margin: 0 0 10px;
+}
+
+.seller-item .seller-product-open {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+}
+
+.seller-item .seller-chat-btn {
+  width: 100%;
+  min-height: 38px;
+  border: 0;
+  background: #eaf3e7;
+  color: var(--green);
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+
+.seller-item .seller-chat-btn:hover {
+  background: #dcebd8;
+}
+
+/* Floating Chat Trigger */
+.chat-float {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 6px 22px rgba(23, 39, 30, 0.32);
+  z-index: 40;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.chat-float:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 26px rgba(23, 39, 30, 0.42);
+}
+
+.chat-float svg {
+  width: 25px;
+  height: 25px;
+}
+
+.chat-float-badge {
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  background: #c8433b;
+  border: 2px solid white;
+  border-radius: 20px;
+  color: white;
+  font-size: 10.5px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-float-badge[hidden] {
+  display: none;
+}
+
+/* Chat Room & List */
+.chat-list-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  margin: 10px 0;
+  color: var(--ink);
+  transition: all .15s ease;
+}
+
+.chat-list-item:hover {
+  border-color: #cbd8c5;
+  background: #fafcfa;
+  transform: translateY(-1px);
+}
+
+.chat-list-item strong {
+  display: block;
+  font-size: 14.5px;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.chat-list-item span {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.chat-list-item small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+
+.chat-header .chat-heading {
+  min-width: 0;
+}
+
+.chat-header .chat-heading h2 {
+  font-size: 20px;
+  font-weight: 850;
+  color: var(--green);
+  margin: 0 0 4px;
+  overflow-wrap: anywhere;
+}
+
+.chat-header .chat-heading p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.form .chat-header-actions button {
+  width: auto;
+  min-height: 38px;
+  min-width: 100px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.form .chat-header-actions .decline-btn {
+  border: 1px solid #d47a73;
+  background: #fff;
+  color: #a7423d;
+}
+
+.form .chat-header-actions .cancel-btn {
+  border: 1px solid #cbd9c9;
+  background: #fff;
+  color: #536d5b;
+}
+
+.cancel-reason-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.form .cancel-reason-actions button {
+  width: 50%;
+  min-height: 44px;
+  margin: 0;
+}
+
+.form .cancel-reason-actions .cancel-confirm {
+  background: #b84b44;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+}
+
+.chat-action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+
+.form .chat-action-bar button, .chat-action-bar .pill, .chat-action-bar .extra-btn {
+  flex: 1 1 150px;
+  width: auto;
+  min-height: 40px;
+  margin: 0;
+  font-size: 13.5px;
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+
+.chat-notice {
+  font-size: 12px !important;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 42vh;
+  min-height: 180px;
+  overflow-y: auto;
+  padding: 12px 10px;
+  background: #fbfbf8;
+  border-radius: 12px;
+  border: 1px solid #edf1e8;
+  margin-bottom: 14px;
+}
+
+.chat-system {
+  text-align: center;
+  align-self: center;
+  color: #566c5e;
+  font-size: 11.5px;
+  background: #e8eee5;
+  border-radius: 20px;
+  padding: 4px 12px;
+  margin: 4px 0;
+}
+
+.chat-bubble {
+  max-width: 82%;
+  align-self: flex-start;
+  background: #ffffff;
+  border: 1px solid #e3e8dc;
+  border-radius: 14px 14px 14px 3px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  overflow-wrap: anywhere;
+}
+
+.chat-bubble.mine {
+  align-self: flex-end;
+  background: #dcebd9;
+  border-color: #c4dcc0;
+  border-radius: 14px 14px 3px 14px;
+}
+
+.chat-bubble small {
+  font-size: 11px;
+  color: #728477;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.chat-bubble p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+
+form textarea#chat-input {
+  min-height: 72px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.transaction-status {
+  display: inline-block;
+  background: #eaf2e7;
+  color: #315a43;
+  padding: 5px 9px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.transaction-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.transaction-actions button {
+  flex: 1;
+  min-width: 130px;
+}
+
+/* Extra Cards & Notifications */
+.extra-link {
+  border: 0;
+  background: none;
+  color: #346449;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.extra-panel {
+  border-top: 1px solid #e3e8dc;
+  margin-top: 20px;
+  padding-top: 16px;
+}
+
+.extra-list {
+  display: grid;
+  gap: 10px;
+}
+
+.extra-card {
+  border: 1px solid var(--line);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 10px 0;
+  transition: all .15s ease;
+}
+
+.extra-card.notification-unread,
+.extra-card:not(.notification-read):has(strong:first-child) {
+  background: #f6faf4;
+  border-color: #c0d8be;
+  border-left: 4px solid var(--green);
+}
+
+.extra-card.notification-read {
+  background: #fafbf9;
+  opacity: 0.88;
+}
+
+.extra-card strong {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 6px;
+  background: #eaf3e7;
+  color: var(--green);
+}
+
+.extra-card.notification-read strong {
+  background: #eff2ec;
+  color: #7f8e83;
+}
+
+.extra-card p {
+  margin: 4px 0;
+  overflow-wrap: anywhere;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.extra-card small {
+  color: #758278;
+  font-size: 12px;
+}
+
+.extra-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.extra-controls button, .extra-btn {
+  border: 1px solid #cbd9c9;
+  background: white;
+  color: #315a43;
+  border-radius: 7px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.extra-controls button:hover, .extra-btn:hover {
+  background: #edf5eb;
+  border-color: #a8c4a4;
+}
+
+.extra-thumb {
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #e8dbca;
+  float: left;
+  margin: 0 12px 4px 0;
+}
+
+.qa-reply {
+  margin: 8px 0 4px 16px;
+  padding-left: 10px;
+  border-left: 3px solid #cbd9c9;
+}
+
+.qa-highlight {
+  outline: 2px solid #a8c5a7;
+  outline-offset: 3px;
+}
+
+.inline-feedback {
+  color: #315a43;
+  background: #eaf2e7;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+.notification-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+.notification-link:hover {
+  text-decoration: none;
+  color: var(--green);
+}
+
+.notification-link p {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.notification-link small {
+  color: #5d7564;
+  font-size: 12px;
+}
+
+.notification-missing {
+  color: #758278;
+}
+
+/* Requests List */
+.requests {
+  max-width: 650px;
+}
+
+.request-list {
+  max-height: 48vh;
+  overflow-y: auto;
+  margin: 20px 0;
+}
+
+.request-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.request-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.request-top strong {
+  font-size: 14px;
+}
+
+.request-status {
+  color: #58785d;
+  background: #edf5e9;
+  border-radius: 5px;
+  padding: 5px 7px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.request-meta {
+  font-size: 12px;
+  color: #849186;
+  margin-top: 8px;
+}
+
+.request-card p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 10px 0 0;
+  color: #52675a;
+}
+
+.request-empty {
+  text-align: center;
+  background: #f7f9f4;
+  border-radius: 10px;
+  padding: 32px 12px;
+  color: #607467;
+  line-height: 2;
+}
+
+.request-empty small {
+  color: #8a998c;
+}
+
+.continue-btn {
+  width: 100%;
+  margin-top: 14px;
+}
+
+/* Account forms & Reset modal */
+.account-form {
+  max-width: 540px;
+}
+
+.account-form .pill {
+  width: 100%;
+}
+
+.text-action, .guest-btn {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #315f49;
+  margin-top: 16px;
+  padding: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.guest-btn {
+  border: 1px solid #b6cab8;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.guest-note {
+  text-align: center;
+  font-size: 12px !important;
+  color: #829388 !important;
+  margin-bottom: 0;
+}
+
+.account-form input[type=file] {
+  font-size: 12px;
+}
+
+.reset-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.reset-actions button {
+  width: 50%;
+  min-height: 44px;
+  margin: 0 !important;
+}
+
+.reset-actions .reset-confirm {
+  background: #b84b44;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+}
+
+.image-choice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px 0 !important;
+}
+
+.image-choice input {
+  width: auto;
+}
+
+.image-choice img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.seller-form [hidden] {
+  display: none;
+}
+
+/* Responsive Media Queries */
+@media(max-width:900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .navlinks {
+    display: none;
+  }
+}
+
+@media(max-width:600px) {
+  .nav {
+    padding: 10px 16px;
+    gap: 10px;
+  }
+  .navright {
+    gap: 8px;
+    font-size: 12px;
+  }
+  .brand {
+    font-size: 21px;
+  }
+  .about-link {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+  .account-avatar {
+    width: 36px;
+    height: 36px;
+  }
+  .account-menu {
+    position: fixed;
+    right: 16px;
+    top: 58px;
+    width: min(260px, calc(100vw - 32px));
+  }
+  .wrap {
+    padding: 18px 16px 50px;
+  }
+  .hero {
+    padding: 24px 20px;
+    border-radius: 16px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 12px;
+    min-height: auto;
+  }
+  .hero-art {
+    align-self: flex-end;
+    font-size: 48px;
+    margin: -6px 0 -12px;
+  }
+  .hero-art span {
+    font-size: 38px;
+  }
+  .hero h1 {
+    font-size: 25px;
+    margin: 8px 0 6px;
+  }
+  .hero p {
+    font-size: 13.5px;
+    margin-bottom: 18px;
+  }
+  .hero-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+  .hero-actions .pill,
+  .hero-actions .hero-sell {
+    flex: 1 1 0;
+    min-width: 0;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 6px;
+    font-size: 13.5px;
+    text-align: center;
+  }
+  #market {
+    scroll-margin-top: 75px;
+  }
+  .layout {
+    display: block;
+  }
+  .filters {
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+  .filterhead {
+    min-height: 40px;
+  }
+  .filter-toggle {
+    cursor: pointer;
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    padding-right: 8px;
+  }
+  .filter-arrow {
+    display: inline-flex;
+    width: 26px;
+    height: 26px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #eef4ec;
+    color: var(--green);
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .filter-arrow svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    transform-origin: center;
+    transition: transform .2s ease;
+  }
+  .filters-open .filter-arrow {
+    background: var(--green);
+    color: #fff;
+  }
+  .filters-open .filter-arrow svg {
+    transform: rotate(180deg);
+  }
+  .reset {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+  }
+  .filters .fields {
+    display: none;
+  }
+  .filters.filters-open .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .filters .field {
+    margin-top: 0;
+  }
+  .filters .field:last-child {
+    grid-column: 1 / -1;
+  }
+  .field label {
+    font-size: 12.5px;
+    margin-bottom: 6px;
+  }
+  .field input, .field select {
+    min-height: 40px;
+    padding: 8px 10px;
+    font-size: 13.5px;
+  }
+  .toolbar {
+    flex-wrap: wrap;
+  }
+  .search {
+    flex-basis: 100%;
+  }
+  .toolbar select {
+    padding: 10px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .photo {
+    height: 130px;
+  }
+  .cardbody {
+    padding: 10px 11px 12px;
+  }
+  .card h3 {
+    font-size: 13.5px;
+    min-height: 2.8em;
+  }
+  .price {
+    font-size: 15.5px;
+  }
+  .school {
+    font-size: 11.5px;
+    margin-bottom: 8px;
+  }
+  .card-tags {
+    gap: 4px;
+  }
+  .method-tags {
+    gap: 3px;
+  }
+  .card-tags .tag {
+    font-size: 10px;
+    padding: 3px 5px;
+  }
+  .detail {
+    display: block;
+    background: #fff;
+  }
+  .detail-visual {
+    height: 280px;
+    min-height: 240px;
+    position: relative;
+    top: auto;
+  }
+  .detail-visual .object-stage {
+    height: 280px;
+    min-height: 240px;
+  }
+  .book-stage, .object-stage {
+    min-height: 250px;
+    height: 250px;
+  }
+  .book-cover {
+    height: 205px;
+    width: 145px;
+    padding: 20px 17px;
+  }
+  .book-cover strong {
+    font-size: 23px;
+    margin-top: 18px;
+  }
+  .cover-shape {
+    font-size: 95px;
+    bottom: -30px;
+  }
+  .object-icon {
+    font-size: 110px;
+  }
+  .gallery-nav button {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 22px;
+  }
+  .gallery-nav {
+    margin: 4px 0;
+  }
+  .detailbody {
+    padding: 24px 20px 28px;
+  }
+  .detailbody h2 {
+    font-size: 21px;
+  }
+  .info-grid {
+    gap: 12px 14px;
+    padding: 14px 0;
+  }
+  .seller-form {
+    padding: 24px 18px;
+  }
+  .seller-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .extra-thumb {
+    width: 56px;
+    height: 56px;
+  }
+  .manage-actions {
+    flex-wrap: wrap;
+  }
+  .chat-float {
+    width: 50px;
+    height: 50px;
+    right: 16px;
+    bottom: 16px;
+  }
+  .chat-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .chat-header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .form .chat-header-actions button {
+    flex: 1;
+    min-width: 120px;
+  }
+  .request-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .records-nav, .mine-nav {
+    white-space: nowrap;
+  }
+}
 </style></head><body><header><nav class="nav"><button class="brand" type="button" onclick="goHome()" aria-label="UniLoop，回到首頁">uni<span>loop</span> ↻</button><button class="about-link" onclick="openInfo()">關於 UniLoop</button><div class="navright" id="account-box"><button id="account-trigger" class="account-trigger" type="button" aria-label="使用者選單" aria-haspopup="true" aria-expanded="false" onclick="toggleMenu()"><span id="account-avatar" class="account-avatar"></span><span id="account-unread" class="account-unread" aria-hidden="true" hidden></span></button><div class="account-menu" id="account-menu" hidden><div class="account-menu-header"><span>我的帳戶</span><strong id="account-name">訪客</strong></div><button id="account-profile" onclick="menuAction('profile')">個人檔案</button><button data-member-only onclick="menuAction('mine')">我的商品</button><button data-member-only onclick="menuAction('records')">交易紀錄</button><button data-member-only onclick="menuAction('notifications')">站內通知 <span id="notification-count"></span></button><button data-member-only onclick="menuAction('favorites')">我的收藏 <span id="favcount"></span></button><button data-member-only class="reset-menu" onclick="menuAction('resetTest')">重置測試帳號</button><button id="account-logout" class="account-logout" onclick="menuAction('logout')">登出</button></div></div></nav></header><main class="wrap"><section class="hero"><div><div class="eyebrow">A LITTLE LESS WASTE, A LITTLE MORE LIFE</div><h1>好物流轉，校園相遇。</h1><p>讓閒置的物品，在另一個人的生活裡繼續發光。</p><div class="hero-actions"><button class="pill" onclick="explore()">探索校園好物　↗</button><button class="hero-sell" onclick="startListing()">我要上架商品　＋</button></div></div><div class="hero-art">📚<span>🌿</span></div></section><div id="market" class="sectiontop"><div><h2 id="heading">探索校園好物</h2><p>從課本到生活用品，找到剛剛好的下一站。</p></div><div class="count" id="count"></div></div><div class="layout"><aside class="filters"><div class="filterhead"><button class="filter-toggle" type="button" aria-expanded="false" aria-controls="filter-fields" onclick="toggleFilters()"><b>篩選商品</b><span class="filter-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button><button class="reset" onclick="resetFilters()">清除條件</button></div><div class="fields" id="filter-fields"><div class="field"><label for="category">商品分類</label><select id="category"><option>全部分類</option><option>課本</option><option>電子產品</option><option>衣物</option><option>家具</option><option>生活用品</option></select></div><div class="field"><label for="city">縣市</label><select id="city"><option>所有地區</option></select></div><div class="field"><label for="school">學校</label><select id="school"><option>所有學校</option></select></div><div class="field"><label for="method">交易方式</label><select id="method"><option>所有方式</option><option>買賣</option><option>交換</option><option>贈送</option></select></div><div class="field"><label>價格範圍（NT$）</label><div class="range"><input id="min" type="number" min="0" placeholder="最低" aria-label="最低價格"><span>–</span><input id="max" type="number" min="0" placeholder="最高" aria-label="最高價格"></div><p class="hint" id="error"></p></div></div></aside><section><div class="toolbar"><div class="search"><input id="search" placeholder="⌕　搜尋商品、描述或分類..." aria-label="搜尋商品"></div><select id="sort" aria-label="排序"><option value="new">最新上架</option><option value="old">最早上架</option><option value="low">價格由低到高</option><option value="high">價格由高到低</option></select></div><div class="grid" id="grid"></div></section></div></main><button class="chat-float" type="button" onclick="showChatList()" aria-label="開啟聊天紀錄"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.8-.35-4-1L3 20.5l1.5-5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 10h8M8 14h5"/></svg><span id="chat-float-badge" class="chat-float-badge" hidden></span></button><footer class="footer">UniLoop © 2026　·　讓好物在校園之間繼續旅程<br>期中作品展示版本・商品及交易資料皆為模擬</footer><div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div><div class="toast" id="toast"></div><script>
 const products=[{id:1,listedAt:'2026-10-29T12:00:00+08:00',name:'管理學原理｜二手課本',desc:'課堂用書，內頁有少量鉛筆註記，保存良好。希望交給下一位需要的同學。',category:'課本',price:280,school:'佛光大學',city:'宜蘭縣',methods:['買賣','交換'],condition:'八成新',seller:'小林同學',emoji:'📚',bg:'#e6eadc',wish:'希望交換其他商管類課本'},{id:2,listedAt:'2026-10-28T12:00:00+08:00',name:'桌上型 LED 閱讀燈',desc:'三段亮度可調，宿舍讀書很方便，功能正常。',category:'生活用品',price:180,school:'國立宜蘭大學',city:'宜蘭縣',methods:['買賣'],condition:'九成新',seller:'阿青',emoji:'💡',bg:'#f3ead6'},{id:3,listedAt:'2026-10-27T12:00:00+08:00',name:'無線藍牙耳機',desc:'附充電盒，功能正常，已清潔。可在校園面交確認。',category:'電子產品',price:650,school:'國立臺灣大學',city:'臺北市',methods:['買賣'],condition:'八成新',seller:'小宇',emoji:'🎧',bg:'#e4e9e4'},{id:4,listedAt:'2026-10-26T12:00:00+08:00',name:'木紋收納小邊桌',desc:'畢業出清，輕巧好搬運，適合宿舍使用。',category:'家具',price:300,school:'佛光大學',city:'宜蘭縣',methods:['買賣','交換'],condition:'七成新',seller:'Mia',emoji:'🪑',bg:'#eee5d9',wish:'想交換宿舍收納用品'},{id:5,listedAt:'2026-10-25T12:00:00+08:00',name:'校園帆布托特包',desc:'容量足夠裝書與水壺，已清洗乾淨。',category:'衣物',price:0,school:'國立政治大學',city:'臺北市',methods:['贈送'],condition:'八成新',seller:'小安',emoji:'👜',bg:'#e8ede4'},{id:6,listedAt:'2026-10-24T12:00:00+08:00',name:'統計學入門課本',desc:'封面有使用痕跡，內頁完整，適合初學者。',category:'課本',price:200,school:'國立臺灣師範大學',city:'臺北市',methods:['買賣','交換'],condition:'七成新',seller:'小陳',emoji:'📖',bg:'#e8e5d8',wish:'希望交換程式設計課本'},{id:7,listedAt:'2026-10-23T12:00:00+08:00',name:'保溫隨行杯',desc:'搬宿舍整理出來的隨行杯，杯蓋正常，清洗後即可使用。',category:'生活用品',price:120,school:'淡江大學',city:'新北市',methods:['買賣'],condition:'八成新',seller:'小晴',emoji:'☕',bg:'#efe6d9'},{id:8,listedAt:'2026-10-22T12:00:00+08:00',name:'藍牙鍵盤',desc:'輕巧便攜，適合平板或筆電，電池供電。',category:'電子產品',price:450,school:'國立中央大學',city:'桃園市',methods:['買賣','交換'],condition:'九成新',seller:'阿哲',emoji:'⌨️',bg:'#e2e9dd',wish:'接受交換滑鼠'}];
 let fav=JSON.parse(localStorage.getItem('uniloop-fav')||'[]'), favoritesOnly=false;const $=id=>document.getElementById(id);const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function options(){let city=$('city').value,school=$('school').value; $('city').innerHTML='<option>所有地區</option>'+[...new Set(products.map(p=>p.city))].map(x=>`<option>${esc(x)}</option>`).join('');$('city').value=city||'所有地區';let schools=[...new Set(products.filter(p=>city==='所有地區'||p.city===city).map(p=>p.school))];$('school').innerHTML='<option>所有學校</option>'+schools.map(x=>`<option>${esc(x)}</option>`).join('');$('school').value=schools.includes(school)?school:'所有學校'}function render(){let q=$('search').value.trim().toLowerCase(), min=$('min').value,max=$('max').value;let bad=(min!==''&&+min<0)||(max!==''&&+max<0)||(min!==''&&max!==''&&+min>+max);$('error').textContent=bad?'請輸入非負數，且最低價格不可高於最高價格。':'';let list=bad?[]:products.filter(p=>!(['交易完成','下架'].includes(p.status))&&(!favoritesOnly||fav.includes(p.id))&&(!q||(p.name+p.desc+p.category).toLowerCase().includes(q))&&($('category').value==='全部分類'||p.category===$('category').value)&&($('city').value==='所有地區'||p.city===$('city').value)&&($('school').value==='所有學校'||p.school===$('school').value)&&($('method').value==='所有方式'||p.methods.includes($('method').value))&&(min===''||p.price>=+min)&&(max===''||p.price<=+max));if($('sort').value==='new')list.sort((a,b)=>Date.parse(b.listedAt)-Date.parse(a.listedAt));if($('sort').value==='old')list.sort((a,b)=>Date.parse(a.listedAt)-Date.parse(b.listedAt));if($('sort').value==='low')list.sort((a,b)=>a.price-b.price);if($('sort').value==='high')list.sort((a,b)=>b.price-a.price);$('count').textContent=`找到 ${list.length} 件好物`;$('favcount').textContent=fav.length?`(${fav.length})`:'';$('heading').textContent=favoritesOnly?'我的收藏':'探索校園好物';$('grid').innerHTML=list.length?list.map(p=>`<article class="card ${isOwnProduct(p)?'own-card':''} ${p.status==='預約中'?'reserved-card':''}" tabindex="0" onclick="detail(${p.id})" onkeydown="if(event.key==='Enter')detail(${p.id})"><div class="photo product-photo item-${p.id}" ${p.ownerDemo?`style="background-image:url('${safePhoto(productImages(p)[0])}')"`:``} aria-label="${esc(p.name)}商品照片"><button class="fav ${fav.includes(p.id)?'active':''}" aria-label="${fav.includes(p.id)?'取消收藏':'加入收藏'}" onclick="event.stopPropagation();toggleFav(${p.id})">${fav.includes(p.id)?'♥':'♡'}</button></div><div class="cardbody"><div class="card-tags"><span class="tag category-tag">${p.category}</span><span class="method-tags">${p.methods.map(m=>`<span class="tag method-${m}">${m}</span>`).join('')}</span></div><h3>${esc(p.name)} ${isOwnProduct(p)?'<span class="own-badge">我的商品</span>':''} ${p.status==='預約中'?'<span class="tag reserved-badge">預約中</span>':''}</h3><div class="school">⌖ ${esc(p.school)}・${esc(p.city)}</div><div class="bottom"><span class="price">${p.price?'NT$ '+p.price:(p.methods.length===1&&p.methods[0]==='贈送'?'免費贈送':'NT$ 0')}</span><span class="small">${p.condition}</span></div></div></article>`).join(''):`<div class="empty">⌕<b>${bad?'價格範圍有誤':favoritesOnly&&!fav.length?'還沒有收藏商品':'找不到符合條件的商品'}</b>${bad?'請調整價格後再試一次。':'試試其他關鍵字或清除篩選條件。'}</div>`}function safePhoto(value){return typeof value==='string' && (/^products\/[1-8]\.jpg$/.test(value)||/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(value))?value:''}function formatListedAt(value){return new Intl.DateTimeFormat('zh-TW',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(value))}function transactionInfo(p){let descriptions={1:'可購買或交換其他商管類課本，優先校園面交。',2:'以標示價格出售，優先在校園面交。',3:'以標示價格出售，面交時可確認功能。',4:'可購買或交換宿舍收納用品，優先校園面交。',5:'免費贈送給需要的同學，優先校園面交。',6:'可購買或交換程式設計課本，優先校園面交。',7:'以標示價格出售，優先在校園面交。',8:'可購買或交換滑鼠，優先校園面交。'};return p.ownerDemo ? (p.methods.includes('交換') ? '希望交換：'+esc(p.exchangeWish)+'；補差價：'+({yes:'接受',no:'不接受',discuss:'可討論'}[p.acceptDifference]||'可討論') : '依標示方式交易，優先校園面交。') : descriptions[p.id]||'請於申請時討論交易方式。'}function goHome(){favoritesOnly=false;resetFilters();closeModal();window.scrollTo({top:0,behavior:'smooth'})}function explore(){favoritesOnly=false;resetFilters();$('market').scrollIntoView({behavior:'smooth',block:'start'})}function toggleFav(id){fav=fav.includes(id)?fav.filter(x=>x!==id):[...fav,id];localStorage.setItem(scopedKey('uniloop-fav'),JSON.stringify(fav));render()}function setView(v){favoritesOnly=v;render();$('market').scrollIntoView({behavior:'smooth'})}function resetFilters(){['category','city','school','method','sort'].forEach(id=>$(id).selectedIndex=0);['search','min','max'].forEach(id=>$(id).value='');options();render()}function openModal(html){$('modal').innerHTML='<button class="close" onclick="closeModal()" aria-label="關閉">×</button>'+html;$('overlay').classList.add('open')}function closeModal(){if(authRequired)return;$('overlay').classList.remove('open')}function soldProduct(id){refreshProductSnapshot();let p=products.find(x=>x.id===id);if(p?.status==='交易完成'){alert('此商品已成交，無法繼續操作。');return true}return false}function detail(id){if(soldProduct(id))return;let p=products.find(x=>x.id===id);if(!p)return;let visual=`<div class="object-stage product-photo item-${p.id}" ${p.ownerDemo?`style="background-image:url('${safePhoto(productImages(p)[0])}')"`:``} role="img" aria-label="${esc(p.name)}商品照片"><span class="visual-caption">商品示意照片</span></div>`;openModal(`<div class="detail"><div class="detail-visual">${visual}${galleryHtml(p)}</div><div class="detailbody"><div class="tags"><span class="tag category-tag">${p.category}</span>${p.methods.map(m=>`<span class="tag method-${m}">${m}</span>`).join('')}</div><h2>${esc(p.name)}</h2><div class="price">${p.price?'NT$ '+p.price:(p.methods.length===1&&p.methods[0]==='贈送'?'免費贈送':'NT$ 0')}</div><p class="description">${esc(p.desc)}</p><div class="info-grid"><div class="info-item"><span>◷ 商品狀況</span><strong>${p.condition}</strong></div><div class="info-item"><span>♙ 賣家</span><strong><button class="extra-link" onclick="showSeller(${id})">${esc(p.seller)}</button></strong></div><div class="info-item"><span>⌂ 學校</span><strong>${esc(p.school)}</strong></div><div class="info-item"><span>⌖ 交易地點</span><strong>優先校園面交・${esc(p.city)}</strong></div></div><div class="wish"><span>↻ 交易意願</span><strong>${transactionInfo(p)}</strong></div><div class="listed-date"><span>◷ 上架時間</span><strong>${formatListedAt(p.listedAt)}</strong><small>${p.ownerDemo?'模擬上架':'示範資料'}</small></div>${isOwnProduct(p)?`<button class="pill" onclick="listingForm(${id},'detail')">編輯商品　✎</button>`:p.status==='預約中'?'<button class="pill" disabled>商品預約中</button>':`<button class="pill" onclick="apply(${id})">提出交易申請　↗</button>`}<p class="disclaimer">展示資料，無真實賣家與付款功能。</p>${questionHtml(p)}</div></div>`)}function apply(id){if(soldProduct(id))return;refreshProductSnapshot();let p=products.find(x=>x.id===id);if(!p)return;if(p.ownerId&&(!isMember())){openModal(`<div class="form"><h2>登入後提出申請</h2><p>模擬交易需要展示帳號，方便在同一瀏覽器中切換雙方查看。</p><button class="pill" onclick="showAuth()">登入或註冊</button><button class="ghost continue-btn" onclick="detail(${id})">返回商品</button></div>`);return}if(p.ownerId===currentSession||p.status==='預約中'||p.status==='交易完成'||p.status==='下架')return;openModal(`<div class="form"><div class="eyebrow">TRANSACTION REQUEST</div><h2>提出交易申請</h2><p>商品：${esc(p.name)} · ${esc(p.school)}</p><p class="notice">本機模擬交易，只有同一瀏覽器的展示帳號可互動，請勿輸入電話或住址。</p><form onsubmit="submitRequest(event,${id})"><label for="type">交易方式</label><select id="type">${p.methods.map(m=>`<option>${m}</option>`).join('')}</select><label for="message">想和賣家說的話</label><textarea id="message" maxlength="200" required placeholder="例如：你好，我想了解是否可以在校園面交？"></textarea><p id="request-error" class="hint" role="alert"></p><button class="pill">確認送出模擬申請</button></form></div>`)}function submitRequest(e,id){e.preventDefault();if(soldProduct(id))return;refreshProductSnapshot();let p=products.find(x=>x.id===id),text=$('message').value.trim(),type=$('type').value;if(!p||!text||!p.methods.includes(type))return;if(privateInfo(text)){$('request-error').textContent='請勿輸入電話、地址或電子郵件。';return}if(p.ownerId&&isMember()){if(p.ownerId===currentSession||p.status==='預約中'||p.status==='交易完成'||p.status==='下架'){ $('request-error').textContent='此商品目前無法申請。';return}let all=readArray(TRANSACTIONS_KEY);if(all.some(t=>t.productId===id&&t.buyerId===currentSession&&['待賣家確認','已接受','買家已確認收貨'].includes(t.status))){$('request-error').textContent='你已有這件商品的進行中申請，請至聊天或交易紀錄查看。';return}let tid=demoId(),record={id:tid,productId:id,product:p.name,buyerId:currentSession,sellerId:p.ownerId,buyer:currentUser().name,seller:p.seller,type,status:'待賣家確認',time:new Date().toISOString(),messages:[{id:demoId(),authorId:currentSession,author:currentUser().name,text,time:new Date().toISOString()}]};try{localStorage.setItem(TRANSACTIONS_KEY,JSON.stringify([...all,record]));notifyLocal(p.ownerId,`「${p.name}」收到一筆本機模擬申請。`,id,'transaction',tid);showTransaction(tid)}catch{$('request-error').textContent='儲存失敗，請檢查瀏覽器空間。'}return}let req=readArray(scopedKey('uniloop-requests'));req.push({id:demoId(),productId:id,product:p.name,type,message:text,time:new Date().toISOString()});try{localStorage.setItem(scopedKey('uniloop-requests'),JSON.stringify(req));openModal('<div class="form"><h2>模擬申請已記錄 ✓</h2><p>示範商品沒有實際賣家，只儲存在此瀏覽器，無法接受或完成交易。</p><button class="pill" onclick="showRequests()">查看模擬交易紀錄</button><button class="ghost continue-btn" onclick="closeModal()">繼續探索商品</button></div>')}catch{$('request-error').textContent='儲存失敗，請檢查瀏覽器空間。'}}
@@ -100,7 +2447,7 @@ function notificationKey(id){return 'uniloop-notifications-v1:'+id}
 function unreadNotifications(){return currentSession?readArray(notificationKey(currentSession)).filter(n=>!n.read).length:0}
 function notifyLocal(id,message,productId=null,kind="product",questionId=null){if(!id||id==='guest')return;try{let key=notificationKey(id),list=readArray(key);list.push({id:demoId(),message,time:new Date().toISOString(),read:false,productId,kind,questionId});localStorage.setItem(key,JSON.stringify(list.slice(-100)));if(id===currentSession){updateAvatar();playNotificationSound()}}catch{}}
 function notificationProduct(n){if(Number.isSafeInteger(n.productId))return products.find(p=>p.id===n.productId)||null;let name=String(n.message||'').match(/「([^」]+)」/)?.[1];if(!name)return null;let matches=products.filter(p=>p.name===name);return matches.length===1?matches[0]:null}
-function showNotifications(){if(!requireMember())return;let list=readArray(notificationKey(currentSession));let body=list.length?list.slice().reverse().map(n=>{let p=notificationProduct(n),tx=notificationTransaction(n),chat=n.kind==='chat'?getUnifiedChat(n.questionId):null;return `<article class="extra-card"><strong>${n.read?'已讀':'未讀'}</strong>${p||tx||chat?`<button class="notification-link" onclick="openNotification('${esc(n.id)}')"><p>${esc(n.message)}</p><small>點擊查看${chat?'聊天紀錄':tx||/收到一筆本機模擬申請/.test(n.message)?'模擬交易':n.kind==='question'||/提問/.test(n.message)?'商品問答':'商品'}</small></button>`:`<p>${esc(n.message)}</p><small class="notification-missing">商品已移除，或舊通知無法辨識商品。</small>`}<small> · ${esc(displayTime(n.time))}</small>${n.read?'':`<div class="extra-controls"><button onclick="markNotification('${esc(n.id)}')">標記已讀</button></div>`}</article>`}).join(''):'<div class="request-empty">目前沒有通知</div>';openModal(`<div class="form"><div class="eyebrow">LOCAL NOTIFICATIONS</div><h2>站內通知</h2><p class="notice">本機模擬通知，只會出現在此瀏覽器的展示帳號；不會發送到其他裝置。</p>${body}<div class="extra-controls"><button onclick="markAllNotifications()">全部標記已讀</button></div></div>`)}
+function showNotifications(){if(!requireMember())return;let list=readArray(notificationKey(currentSession));let body=list.length?list.slice().reverse().map(n=>{let p=notificationProduct(n),tx=notificationTransaction(n),chat=n.kind==='chat'?getUnifiedChat(n.questionId):null;return `<article class="extra-card ${n.read?'notification-read':'notification-unread'}"><strong>${n.read?'已讀':'未讀'}</strong>${p||tx||chat?`<button class="notification-link" onclick="openNotification('${esc(n.id)}')"><p>${esc(n.message)}</p><small>點擊查看${chat?'聊天紀錄':tx||/收到一筆本機模擬申請/.test(n.message)?'模擬交易':n.kind==='question'||/提問/.test(n.message)?'商品問答':'商品'}</small></button>`:`<p>${esc(n.message)}</p><small class="notification-missing">商品已移除，或舊通知無法辨識商品。</small>`}<small> · ${esc(displayTime(n.time))}</small>${n.read?'':`<div class="extra-controls"><button onclick="markNotification('${esc(n.id)}')">標記已讀</button></div>`}</article>`}).join(''):'<div class="request-empty">目前沒有通知</div>';openModal(`<div class="form"><div class="eyebrow">LOCAL NOTIFICATIONS</div><h2>站內通知</h2><p class="notice">本機模擬通知，只會出現在此瀏覽器的展示帳號；不會發送到其他裝置。</p>${body}<div class="extra-controls"><button onclick="markAllNotifications()">全部標記已讀</button></div></div>`)}
 function openNotification(id){if(!isMember())return;let key=notificationKey(currentSession),list=readArray(key),n=list.find(x=>x.id===id);if(!n)return;let p=notificationProduct(n),tx=notificationTransaction(n),chat=n.kind==='chat'?getUnifiedChat(n.questionId):null;if(!p&&!tx&&!chat){showNotifications();return}n.read=true;try{localStorage.setItem(key,JSON.stringify(list));updateAvatar()}catch{alert('無法儲存通知狀態。');return}if(chat){showUnifiedChat(chat.id);return}if(tx){showTransaction(tx.id);return}if(/收到一筆本機模擬申請/.test(n.message)){showRequests();return}if(n.kind==='question'&&/追蹤問答/.test(n.message)&&n.questionId){showQuestionChat(n.questionId);return}detail(p.id);if(n.kind==='question'||/提問/.test(n.message)){let node=n.questionId?document.getElementById('question-'+n.questionId):null;node=node||document.getElementById('product-questions');if(node){node.scrollIntoView({block:'center'});node.classList.add('qa-highlight')}}}
 function markNotification(id){let key=notificationKey(currentSession),list=readArray(key);list.forEach(n=>{if(n.id===id)n.read=true});try{localStorage.setItem(key,JSON.stringify(list));updateAvatar();showNotifications()}catch{alert('無法儲存通知狀態。')}}
 function markAllNotifications(){let key=notificationKey(currentSession),list=readArray(key);list.forEach(n=>n.read=true);try{localStorage.setItem(key,JSON.stringify(list));updateAvatar();showNotifications()}catch{alert('無法儲存通知狀態。')}}
