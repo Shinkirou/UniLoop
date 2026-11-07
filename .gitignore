@@ -1,0 +1,8 @@
+# 安裝依賴與本機工具設定不納入版本控制
+node_modules/
+.agents/
+.env
+.env.*
+!.env.example
+npm-debug.log*
+.DS_Store

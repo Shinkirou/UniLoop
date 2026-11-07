@@ -7,6 +7,7 @@ npm install --prefix verification --no-save @electric-sql/pglite playwright-core
 node verification/questions-db.cjs
 node verification/images-db.cjs
 node verification/trade-db.cjs
+node verification/new-features-db.cjs
 ```
 
 瀏覽器測試需先以 `node dev-server.cjs` 開啟本機服務；以下測試使用 Windows Chrome 與 127.0.0.1:8765：

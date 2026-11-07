@@ -48,14 +48,17 @@ window.updateAvatar = function() { originalUpdateAvatar(); avatarOwner = null; c
 window.addEventListener('storage', event => { if (event.key === 'uniloop-cloud-session-v1') cloudStatus(); });
 cloudStatus();
 
-window.uniloopCloudAuth = async function(mode = 'login') {
+window.uniloopCloudAuth = async function(mode = 'login', afterSignIn = false) {
   // 先顯示狀態，再等待雲端回應。
   modal('<div class="form account-form"><h2>帳號</h2><p>正在確認登入狀態…</p></div>');
   try {
     const session = await cloud.getSession(); cloudStatus();
-    if (session?.user?.id) { await showCloudProfile(session); return; }
+    if (session?.user?.id) {
+      if (afterSignIn && !(await cloud.getProfile())) { await showNewUserSetup(session); return; }
+      await showCloudProfile(session); return;
+    }
     const registering = mode === 'register';
-    modal(`<div class="form account-form"><div class="eyebrow">ACCOUNT</div><h2>${registering ? '註冊帳號' : '登入帳號'}</h2><p class="notice">目前為雲端測試階段。一般使用者的註冊驗證信服務尚在設定，請使用已建立的測試帳號登入。</p><form id="cloud-login"><label for="cloud-email">電子郵件</label><input id="cloud-email" type="email" autocomplete="username" required><label for="cloud-password">密碼</label><input id="cloud-password" type="password" minlength="6" autocomplete="${registering ? 'new-password' : 'current-password'}" required><p id="cloud-auth-error" class="hint" role="alert"></p><button class="pill" type="submit">${registering ? '註冊' : '登入'}</button></form>${registering ? '' : '<button class="text-action" type="button" id="cloud-forgot">忘記密碼？</button>'}<button class="text-action" type="button" id="cloud-switch">${registering ? '已有帳號？返回登入' : '還沒有帳號？註冊'}</button><button class="ghost continue-btn" type="button" onclick="guestLogin()">以訪客身分瀏覽</button></div>`);
+    modal(`<div class="form account-form"><div class="eyebrow">ACCOUNT</div><h2>${registering ? '註冊帳號' : '登入帳號'}</h2><p class="notice">${registering ? '請使用能收信的電子郵件註冊，並依信中指示完成驗證。' : '請使用註冊時的電子郵件與密碼登入。'}</p><form id="cloud-login"><label for="cloud-email">電子郵件</label><input id="cloud-email" type="email" autocomplete="username" required><label for="cloud-password">密碼</label><input id="cloud-password" type="password" minlength="6" autocomplete="${registering ? 'new-password' : 'current-password'}" required><p id="cloud-auth-error" class="hint" role="alert"></p><button class="pill" type="submit">${registering ? '註冊' : '登入'}</button></form>${registering ? '' : '<button class="text-action" type="button" id="cloud-forgot">忘記密碼？</button>'}<button class="text-action" type="button" id="cloud-switch">${registering ? '已有帳號？返回登入' : '還沒有帳號？註冊'}</button><button class="ghost continue-btn" type="button" onclick="guestLogin()">以訪客身分瀏覽</button></div>`);
     $('cloud-switch').addEventListener('click', () => window.uniloopCloudAuth(registering ? 'login' : 'register'));
     $('cloud-forgot')?.addEventListener('click', () => {
       modal(`<div class="form account-form"><h2>重設密碼</h2><p>輸入註冊時的電子郵件；若帳號可接收信件，系統會寄送重設連結。</p><form id="reset-request"><label for="reset-email">電子郵件</label><input id="reset-email" type="email" autocomplete="email" required><p id="reset-message" class="hint" role="status"></p><button type="submit" class="pill">寄送重設連結</button><button type="button" class="ghost" id="reset-back">返回登入</button></form></div>`);
@@ -75,9 +78,9 @@ window.uniloopCloudAuth = async function(mode = 'login') {
         if (registering) {
           const result = await cloud.signUp(email, password, location.href.split('#')[0].split('?')[0]);
           $('cloud-password').value = ''; cloudStatus();
-          if (result?.access_token) await window.uniloopCloudAuth();
+          if (result?.access_token) await window.uniloopCloudAuth('login', true);
           else $('cloud-auth-error').textContent = '註冊請求已送出；如果收到驗證信，請完成確認後再登入。若未收到，可能是目前寄信服務的限制。';
-        } else { await cloud.signIn(email, password); $('cloud-password').value = ''; cloudStatus(); await window.uniloopCloudAuth(); }
+        } else { await cloud.signIn(email, password); $('cloud-password').value = ''; cloudStatus(); await window.uniloopCloudAuth('login', true); }
       }
       catch (error) { $('cloud-auth-error').textContent = error.message || '登入失敗。'; }
       finally { button.disabled = false; }
@@ -85,15 +88,48 @@ window.uniloopCloudAuth = async function(mode = 'login') {
   } catch (error) { modal(`<div class="form"><h2>帳號</h2><p>${esc(error.message)}</p><button class="ghost" onclick="closeModal()">關閉</button></div>`); }
 };
 
+async function showNewUserSetup(session) {
+  modal(`<div class="form account-form"><div class="eyebrow">WELCOME</div><h2>歡迎加入 UniLoop</h2><p class="notice">先設定你的個人檔案吧！所有欄位都可以稍後再填，也能隨時到「個人檔案」修改。</p><p class="notice">暱稱、頭像、地區和學校可能會公開顯示，請勿輸入電話、地址或電子郵件。</p><form id="cloud-onboarding"><label for="onboarding-name">暱稱（選填）</label><input id="onboarding-name" maxlength="80" placeholder="未填寫時顯示 UniLoop 會員"><label for="onboarding-avatar">頭像（選填，JPG、PNG 或 WebP，最多 1 MB）</label><input id="onboarding-avatar" type="file" accept="image/jpeg,image/png,image/webp">${locationMarkup('onboarding', '', '', false)}<p id="onboarding-error" class="hint" role="alert"></p><button type="submit" class="pill">儲存並開始使用</button><button type="button" class="ghost continue-btn" id="onboarding-skip">稍後設定，使用預設資料</button></form></div>`);
+  const closeButton = document.querySelector('#modal > .close');
+  if (closeButton) { closeButton.hidden = true; closeButton.style.display = 'none'; }
+  setupLocation('onboarding');
+  const form = $('cloud-onboarding'), guard = createEditGuard(form);
+  async function finish(useDefaults) {
+    if (guard.busy || (useDefaults && !guard.tryLeave())) return;
+    const buttons = form.querySelectorAll('button');
+    guard.busy = true; form.inert = true; buttons.forEach(button => button.disabled = true);
+    let uploaded = null;
+    try {
+      if (cloud.session?.user?.id !== session.user.id) throw new Error('登入帳號已變更，請重新登入。');
+      const file = useDefaults ? null : $('onboarding-avatar').files[0];
+      if (file) uploaded = await cloud.uploadProductImage(file);
+      const profile = {
+        display_name: useDefaults ? 'UniLoop 會員' : ($('onboarding-name').value.trim() || 'UniLoop 會員'),
+        city: useDefaults ? '' : $('onboarding-city').value.trim(),
+        school: useDefaults ? '' : $('onboarding-school').value.trim(),
+        avatar_url: uploaded?.url || null
+      };
+      await cloud.saveProfile(profile);
+      guard.clear(); form.removeAttribute('id');
+      refreshCloudAvatar(true);
+      bridge.closeModal();
+    } catch (error) {
+      $('onboarding-error').textContent = uploaded ? '頭像已上傳，但資料儲存狀態尚未確認；請稍後再試。' : (error.message || '無法儲存資料，請稍後再試。');
+    } finally { guard.busy = false; form.inert = false; buttons.forEach(button => button.disabled = false); }
+  }
+  form.addEventListener('submit', event => { event.preventDefault(); finish(false); });
+  $('onboarding-skip').addEventListener('click', () => finish(true));
+}
+
 async function showCloudProfile(session) {
   modal('<div class="form account-form"><h2>個人檔案</h2><p>正在讀取…</p></div>');
   try {
-    const profile = await cloud.getProfile();
+    const [profile, campusVerified] = await Promise.all([cloud.getProfile(), typeof cloud.campusVerified === 'function' ? cloud.campusVerified(session.user.id).catch(()=>null) : null]);
     if (cloud.session?.user?.id !== session.user.id) return;
     modal('<div class="form account-form"><h2>個人檔案</h2><div id="profile-content"></div></div>');
     const container = $('profile-content');
     function showDetails(current) {
-      container.innerHTML = `${safeAvatar(current?.avatar_url) ? `<img class="profile-avatar" src="${esc(current.avatar_url)}" alt="個人頭像">` : ''}<p>電子郵件：${esc(session.user.email || '未提供')}</p><p>暱稱：${esc(current?.display_name || '尚未設定')}</p><p>地區：${esc(current?.city || '尚未設定')}</p><p>學校：${esc(current?.school || '尚未設定')}</p><p class="notice">暱稱、地區與學校可能顯示給其他使用者，請勿輸入私人資訊。</p><button type="button" id="profile-edit" class="pill">編輯資料</button>`;
+      container.innerHTML = `${safeAvatar(current?.avatar_url) ? `<img class="profile-avatar" src="${esc(current.avatar_url)}" alt="個人頭像">` : ''}<p>電子郵件：${esc(session.user.email || '未提供')}</p>${campusVerified === null ? '' : `<p>校園信箱：${campusVerified ? '已驗證' : '尚未驗證'}</p><p class="notice">校園信箱驗證表示登入信箱已確認，不代表保證目前在學。</p>`}<p>暱稱：${esc(current?.display_name || '尚未設定')}</p><p>地區：${esc(current?.city || '尚未設定')}</p><p>學校：${esc(current?.school || '尚未設定')}</p><p class="notice">暱稱、地區與學校可能顯示給其他使用者，請勿輸入私人資訊。</p><button type="button" id="profile-edit" class="pill">編輯資料</button>`;
       $('profile-edit').onclick = () => showEditor(current);
     }
     function showEditor(current) {
@@ -157,7 +193,22 @@ window.uniloopCloudMine = async function() {
   } catch (error) { modal(`<div class="form"><h2>無法讀取商品</h2><p>${esc(error.message)}</p></div>`); }
 };
 
-function editCloudProduct(p) {
+window.uniloopCloudEditProduct = async function(productId, detailId) {
+  modal('<div class="form seller-form"><h2>編輯商品</h2><p>正在讀取商品資料…</p></div>');
+  try {
+    const session = await cloud.getSession();
+    if (!session?.user?.id) return window.uniloopCloudAuth();
+    const items = await cloud.listMyProducts();
+    const product = (items || []).find(item => item.id === productId && item.owner_id === session.user.id && !item.deleted_at);
+    if (!product) throw new Error('找不到此商品，或你沒有編輯權限。');
+    if (!['上架中', '下架'].includes(product.status)) throw new Error('此商品正在交易或已完成交易，無法編輯。');
+    editCloudProduct(product, () => window.uniloopCloudOpen(detailId), '返回商品詳情');
+  } catch (error) {
+    modal(`<div class="form"><h2>無法編輯商品</h2><p>${esc(error.message || '請稍後再試。')}</p><button class="ghost" type="button" onclick="window.uniloopCloudMine()">返回我的商品</button></div>`);
+  }
+};
+
+function editCloudProduct(p, returnTo = () => window.uniloopCloudMine(), returnLabel = '返回我的商品') {
   if (!['上架中','下架'].includes(p.status)) return;
   const categories = ['課本','電子產品','衣物','家具','生活用品'];
   const methods = ['買賣','交換','贈送'];
@@ -166,7 +217,7 @@ function editCloudProduct(p) {
   const conditionIndex = conditionLevels.indexOf(previousCondition);
   let conditionChanged = false;
   const existingImages = Array.isArray(p.image_urls) ? p.image_urls : [];
-  modal(`<div class="form seller-form"><h2>編輯商品</h2><p class="notice">可編輯商品內容及圖片，圖片最多保留 3 張。</p><form id="cloud-edit"><label for="ce-name">名稱 <span class="required-star" aria-label="必填">*</span></label><input id="ce-name" maxlength="100" value="${esc(p.name)}" required><label for="ce-desc">說明</label><textarea id="ce-desc" maxlength="1000">${esc(p.description || '')}</textarea><label>現有圖片（取消勾選可移除）</label><div class="edit-images">${existingImages.map((src,i)=>`<label class="edit-image"><input type="checkbox" name="ce-keep-image" value="${i}" checked>${safeAvatar(src)?`<img src="${esc(src)}" alt="商品圖片 ${i+1}">`:'<span>圖片 ${i+1}</span>'}<span>保留</span></label>`).join('') || '<p class="small">目前沒有圖片。</p>'}</div><label for="ce-new-images">新增圖片（JPG、PNG 或 WebP，每張最多 1 MB）</label><input id="ce-new-images" type="file" accept="image/jpeg,image/png,image/webp" multiple><label for="ce-category">分類</label><select id="ce-category">${categories.map(c => `<option ${c === p.category ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select><label for="ce-price">價格 <span class="required-star" aria-label="必填">*</span></label><input id="ce-price" type="number" min="0" max="1000000" step="1" value="${esc(p.price)}" required>${locationMarkup('ce', p.city, p.school, true)}<label for="ce-condition">商品狀況 <strong id="ce-condition-label">${esc(conditionIndex >= 0 ? conditionLevels[conditionIndex] : previousCondition ? `原資料：${previousCondition}` : '尚未設定')}</strong></label><input id="ce-condition" class="condition-slider" type="range" min="0" max="6" step="1" value="${conditionIndex >= 0 ? conditionIndex : 2}" aria-valuetext="${esc(conditionIndex >= 0 ? conditionLevels[conditionIndex] : previousCondition || '尚未設定')}"><div class="range-captions"><span>全新</span><span>使用痕跡明顯</span></div><label>交易方式 <span class="required-star" aria-label="必填">*</span></label><div class="trade-methods">${methods.map(m => `<label class="trade-method"><input type="checkbox" name="ce-method" value="${esc(m)}" ${(p.methods || []).includes(m) ? 'checked' : ''}><span>${esc(m)}</span></label>`).join('')}</div><div id="ce-exchange-fields"><label for="ce-wish">交換意願（選填）</label><input id="ce-wish" maxlength="200" value="${esc(p.exchange_wish || '')}"><label for="ce-difference">是否接受補差價</label><select id="ce-difference"><option value="">未設定</option>${[['yes','接受'],['no','不接受'],['discuss','可討論']].map(([v,l])=>`<option value="${v}" ${p.accept_difference===v?'selected':''}>${l}</option>`).join('')}</select></div><p id="ce-error" role="alert" class="hint"></p><button class="pill" type="submit">儲存修改</button></form><button type="button" class="ghost continue-btn" id="ce-back">返回我的商品</button></div>`);
+  modal(`<div class="form seller-form"><h2>編輯商品</h2><p class="notice">可編輯商品內容及圖片，圖片最多保留 3 張。</p><form id="cloud-edit"><label for="ce-name">名稱 <span class="required-star" aria-label="必填">*</span></label><input id="ce-name" maxlength="100" value="${esc(p.name)}" required><label for="ce-desc">說明</label><textarea id="ce-desc" maxlength="1000">${esc(p.description || '')}</textarea><label>現有圖片（取消勾選可移除）</label><div class="edit-images">${existingImages.map((src,i)=>`<label class="edit-image"><input type="checkbox" name="ce-keep-image" value="${i}" checked>${safeAvatar(src)?`<img src="${esc(src)}" alt="商品圖片 ${i+1}">`:'<span>圖片 ${i+1}</span>'}<span>保留</span></label>`).join('') || '<p class="small">目前沒有圖片。</p>'}</div><label for="ce-new-images">新增圖片（JPG、PNG 或 WebP，每張最多 1 MB）</label><input id="ce-new-images" type="file" accept="image/jpeg,image/png,image/webp" multiple><label for="ce-category">分類</label><select id="ce-category">${categories.map(c => `<option ${c === p.category ? 'selected' : ''}>${esc(c)}</option>`).join('')}</select><label for="ce-price">價格 <span class="required-star" aria-label="必填">*</span></label><input id="ce-price" type="number" min="0" max="1000000" step="1" value="${esc(p.price)}" required>${locationMarkup('ce', p.city, p.school, true)}<label for="ce-condition">商品狀況 <strong id="ce-condition-label">${esc(conditionIndex >= 0 ? conditionLevels[conditionIndex] : previousCondition ? `原資料：${previousCondition}` : '尚未設定')}</strong></label><input id="ce-condition" class="condition-slider" type="range" min="0" max="6" step="1" value="${conditionIndex >= 0 ? conditionIndex : 2}" aria-valuetext="${esc(conditionIndex >= 0 ? conditionLevels[conditionIndex] : previousCondition || '尚未設定')}"><div class="range-captions"><span>全新</span><span>使用痕跡明顯</span></div><label>交易方式 <span class="required-star" aria-label="必填">*</span></label><div class="trade-methods">${methods.map(m => `<label class="trade-method"><input type="checkbox" name="ce-method" value="${esc(m)}" ${(p.methods || []).includes(m) ? 'checked' : ''}><span>${esc(m)}</span></label>`).join('')}</div><div id="ce-exchange-fields"><label for="ce-wish">交換意願（選填）</label><input id="ce-wish" maxlength="200" value="${esc(p.exchange_wish || '')}"><label for="ce-difference">是否接受補差價</label><select id="ce-difference"><option value="">未設定</option>${[['yes','接受'],['no','不接受'],['discuss','可討論']].map(([v,l])=>`<option value="${v}" ${p.accept_difference===v?'selected':''}>${l}</option>`).join('')}</select></div><p id="ce-error" role="alert" class="hint"></p><button class="pill" type="submit">儲存修改</button></form><button type="button" class="ghost continue-btn" id="ce-back">${returnLabel}</button></div>`);
   setupLocation('ce');
   const slider = $('ce-condition');
   slider.addEventListener('input', () => { conditionChanged = Number(slider.value) !== (conditionIndex >= 0 ? conditionIndex : 2); const value = !conditionChanged && conditionIndex < 0 ? previousCondition || '尚未設定' : conditionLevels[Number(slider.value)]; $('ce-condition-label').textContent = !conditionChanged && conditionIndex < 0 && previousCondition ? `原資料：${value}` : value; slider.setAttribute('aria-valuetext', value); });
@@ -174,7 +225,7 @@ function editCloudProduct(p) {
   document.querySelectorAll('[name="ce-method"]').forEach(input => input.addEventListener('change', syncExchange));
   syncExchange();
   const guard = createEditGuard($('cloud-edit'));
-  $('ce-back').onclick = () => { if (guard.tryLeave()) { guard.clear(); window.uniloopCloudMine(); } };
+  $('ce-back').onclick = () => { if (guard.tryLeave()) { guard.clear(); returnTo(); } };
   $('cloud-edit').addEventListener('submit', async event => {
     event.preventDefault(); const form = event.currentTarget, error = $('ce-error'), button = form.querySelector('[type=submit]');
     const name = $('ce-name').value.trim(), city = $('ce-city').value.trim(), school = $('ce-school').value.trim();
@@ -197,7 +248,7 @@ function editCloudProduct(p) {
         if (pending) await cloud.cleanupProductImages(pending);
       }
       guard.clear();
-      await window.uniloopRefreshCloudProducts(); await window.uniloopCloudMine();
+      await window.uniloopRefreshCloudProducts(); await returnTo();
     } catch (err) {
       if (!imageSaved && uploads.length && err.status >= 400 && err.status < 500) { try { await cloud.removeProductImages(uploads.map(x=>x.path)); } catch {} }
       error.textContent = imageSaved ? '商品與新圖片已儲存，舊圖片尚未清理完成；回到我的商品會自動重試。' : textSaved ? '文字資料已儲存，但圖片更新未完成或狀態尚未確認；請重新讀取後確認。' : (err.message || '儲存失敗。');

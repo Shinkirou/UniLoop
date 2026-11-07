@@ -34,13 +34,23 @@ function showTradeSuccess(trade, chatId, name, draft = '') {
 }
 async function session() { const s = await cloud.getSession(); if (!s?.user?.id) { await window.uniloopCloudAuth(); return null; } return s; }
 
+async function showTradeReview(trade) {
+  show('<h2>交易評價</h2><p>正在讀取…</p>');
+  try {
+    const rows=await cloud.getMyTradeReview(trade.id), previous=rows?.[0] || null;
+    show(`<h2>${previous?'修改評價':'交易評價'}</h2><p>「${esc(trade.products?.name || '商品')}」的評價會公開顯示，可隨時修改。</p><form id="review-form"><fieldset class="review-rating"><legend>評分</legend><div class="review-rating-options">${[0,1,2,3,4,5].map(n=>`<label class="review-rating-option"><input type="radio" name="review-stars" value="${n}" ${previous?.stars===n?'checked':''} required><span>${n} 星</span></label>`).join('')}</div></fieldset><label for="review-body">留言（選填）</label><textarea id="review-body" maxlength="500">${esc(previous?.body || '')}</textarea><p id="review-error" class="hint" role="alert"></p><button class="pill" type="submit">送出評價</button><button type="button" class="ghost" id="review-back">返回交易紀錄</button></form>`);
+    $('review-back').onclick=window.uniloopCloudTrades;
+    $('review-form').onsubmit=async event=>{event.preventDefault();const button=event.currentTarget.querySelector('[type=submit]'),selected=event.currentTarget.querySelector('input[name="review-stars"]:checked');if(!selected){$('review-error').textContent='請先選擇星數。';return}button.disabled=true;try{await cloud.saveTradeReview(trade.id,Number(selected.value),$('review-body').value.trim());await window.uniloopCloudTrades()}catch(error){$('review-error').textContent=error.message || '無法送出評價';button.disabled=false}};
+  } catch(error) { fail(error); }
+}
+
 let notices = [], noticeOwner = null, knownUnread = null, noticeRequest = null, noticeRequestOwner = null, noticeError = null, questionNoticeError = null;
 function renderNoticeCounts() {
   const count = notices.length;
   const menu = $('notification-count'), badge = $('account-unread'), chat = $('chat-float-badge');
   if (menu) menu.textContent = count ? `(${count})` : '';
   if (badge) { badge.hidden = !count; badge.textContent = count > 99 ? '99+' : String(count); }
-  const chatCount = notices.filter(n => n.kind !== 'question').length;
+  const chatCount = notices.filter(n => n.kind === 'chat').length;
   if (chat) { chat.hidden = !chatCount; chat.textContent = chatCount > 99 ? '99+' : String(chatCount); }
 }
 async function refreshCloudNotices(playSound = true) {
@@ -57,11 +67,16 @@ async function refreshCloudNotices(playSound = true) {
   noticeRequest = (async () => { try {
     const [messages, reads, conversations] = await Promise.all([cloud.listRecentMessages(), cloud.listConversationReads(), cloud.listConversations()]);
     let questionNotices = [];
-    try { questionNotices = await cloud.listQuestionNotifications(); questionNoticeError = null; questionFeatureAvailable = true; setupQuestionRealtime(); } catch(error) { questionNoticeError = error; }
+    try { questionNotices = await cloud.listQuestionNotifications(); questionNoticeError = null; questionFeatureAvailable = true; } catch(error) { questionNoticeError = error; }
+    let favoriteNotices = [];
+    try { if (typeof cloud.listFavoriteNotices === 'function') { favoriteNotices = await cloud.listFavoriteNotices(); favoriteFeatureAvailable = true; } } catch(error) { favoriteFeatureAvailable = false; }
+    setupQuestionRealtime();
+    setupFavoriteRealtime();
     if (cloud.session?.user?.id !== owner) return;
     const chatNotices = collectUnread(messages, reads, conversations, owner).map(n=>({...n,kind:'chat',key:'chat:'+n.id}));
     const questionItems = (questionNotices || []).map(n=>({...n,kind:'question',key:'question:'+n.id,productName:n.product_questions?.products?.name || '商品',productId:n.product_questions?.product_id,noticeType:n.kind}));
-    const next = [...chatNotices,...questionItems];
+    const favoriteItems = (favoriteNotices || []).map(n=>({...n,kind:'favorite',key:'favorite:'+n.id,productName:n.product_name,productId:n.product_id,noticeType:n.kind}));
+    const next = [...chatNotices,...questionItems,...favoriteItems];
     const currentIds = new Set(next.map(m => m.key));
     const hasNew = knownUnread && next.some(m => !knownUnread.has(m.key));
     notices = next; knownUnread = currentIds; noticeError = null; renderNoticeCounts();
@@ -75,28 +90,39 @@ window.uniloopCloudNotifications = async function() {
     if (!(await session())) return;
     await refreshCloudNotices(false);
     if (noticeError) throw new Error('無法讀取雲端通知，請確認網路與通知資料表設定後再試。');
-    show(`<h2>站內通知</h2>${questionNoticeError ? '<p class="notice">問答通知暫時無法讀取。</p>' : ''}${notices.map((n,i) => `<div class="notice-row"><button type="button" class="chat-list-item" data-notice="${i}"><strong>${esc(n.productName)}</strong><span>${n.kind==='question' ? (n.noticeType==='answer'?'賣家回覆了你的問題':'商品收到新問題') : '收到一則新訊息，點此開啟聊天室'}</span></button>${n.kind==='question'?`<button type="button" class="ghost" data-notice-read="${i}">標記已讀</button>`:''}</div>`).join('') || '<p>目前沒有未讀訊息。</p>'}<p id="notice-error" class="hint" role="alert"></p>${reloadButton('notice-reload')}`);
+    show(`<h2>站內通知</h2>${questionNoticeError ? '<p class="notice">問答通知暫時無法讀取。</p>' : ''}${notices.map((n,i) => `<div class="notice-row"><button type="button" class="chat-list-item" data-notice="${i}"><strong>${esc(n.productName)}</strong><span>${n.kind==='question' ? (n.noticeType==='answer'?'賣家回覆了你的問題':'商品收到新問題') : n.kind==='favorite' ? ({price_drop:'收藏商品已降價',unlisted:'收藏商品已下架',methods_changed:'收藏商品的交易方式已變更'}[n.noticeType] || '收藏商品已更新') : '收到一則新訊息，點此開啟聊天室'}</span></button>${n.kind!=='chat'?`<button type="button" class="ghost" data-notice-read="${i}">標記已讀</button>`:''}</div>`).join('') || '<p>目前沒有未讀訊息。</p>'}<p id="notice-error" class="hint" role="alert"></p>${reloadButton('notice-reload')}`);
     document.querySelectorAll('[data-notice]').forEach(button => button.onclick = async () => {
       const n = notices[Number(button.dataset.notice)]; if (!n) return;
-      if (n.kind !== 'question') { showChat(n.conversation_id,n.productName); return; }
+      if (n.kind === 'chat') { showChat(n.conversation_id,n.productName); return; }
+      if (n.kind === 'favorite') {
+        try { await cloud.markFavoriteNoticeRead(n.id); await refreshCloudNotices(false); if(!window.uniloopOpenQuestionProduct?.(n.productId)) await window.uniloopCloudNotifications(); }
+        catch(error) { $('notice-error').textContent=error.message || '無法更新通知'; }
+        return;
+      }
       if (!window.uniloopOpenQuestionProduct?.(n.productId)) { $('notice-error').textContent='此商品目前無法開啟，你仍可將通知標記已讀。'; return; }
       try { await cloud.markQuestionNoticeRead(n.id); await refreshCloudNotices(false); } catch(error) { console.warn('無法更新通知', error); }
     });
     document.querySelectorAll('[data-notice-read]').forEach(button => button.onclick = async () => {
       const n = notices[Number(button.dataset.noticeRead)]; if (!n) return; button.disabled=true;
-      try { await cloud.markQuestionNoticeRead(n.id); await window.uniloopCloudNotifications(); } catch(error) { $('notice-error').textContent=error.message || '無法更新已讀狀態。'; button.disabled=false; }
+      try { if(n.kind==='favorite') await cloud.markFavoriteNoticeRead(n.id); else await cloud.markQuestionNoticeRead(n.id); await window.uniloopCloudNotifications(); } catch(error) { $('notice-error').textContent=error.message || '無法更新已讀狀態。'; button.disabled=false; }
     });
     $('notice-reload').onclick = window.uniloopCloudNotifications;
   } catch (error) { fail(error); }
 };
 // Realtime 僅作為變動提醒；實際內容仍透過具備權限檢查的 API 重新讀取。
 let realtimeClient = null, realtimeChannel = null, realtimeOwner = null, realtimeToken = null;
-let questionChannel = null, questionFeatureAvailable = false;
+let questionChannel = null, favoriteChannel = null, questionFeatureAvailable = false, favoriteFeatureAvailable = false;
 function setupQuestionRealtime() {
   if (!questionFeatureAvailable || !realtimeClient || !realtimeOwner || questionChannel) return;
   const channel = realtimeClient.channel('uniloop-questions-' + realtimeOwner);
   for (const event of ['INSERT','UPDATE']) channel.on('postgres_changes',{event,schema:'public',table:'question_notifications'},()=>refreshCloudNotices(true));
   questionChannel = channel; channel.subscribe();
+}
+function setupFavoriteRealtime() {
+  if (!favoriteFeatureAvailable || !realtimeClient || !realtimeOwner || favoriteChannel) return;
+  const channel = realtimeClient.channel('uniloop-favorites-' + realtimeOwner);
+  for (const event of ['INSERT','UPDATE']) channel.on('postgres_changes',{event,schema:'public',table:'favorite_change_notices'},()=>refreshCloudNotices(true));
+  favoriteChannel = channel; channel.subscribe();
 }
 let realtimeReady = false, realtimeGeneration = 0, realtimeTimer = null;
 async function syncRealtime() {
@@ -108,7 +134,8 @@ async function syncRealtime() {
   if (owner !== realtimeOwner) {
     if (realtimeClient && realtimeChannel) realtimeClient.removeChannel(realtimeChannel);
     if (realtimeClient && questionChannel) realtimeClient.removeChannel(questionChannel);
-    questionChannel = null; questionFeatureAvailable = false;
+    if (realtimeClient && favoriteChannel) realtimeClient.removeChannel(favoriteChannel);
+    questionChannel = null; favoriteChannel = null; questionFeatureAvailable = false; favoriteFeatureAvailable = false;
     realtimeChannel = null; realtimeClient = null; realtimeReady = false; realtimeOwner = owner; realtimeToken = null;
   }
   if (!owner) { await refreshCloudNotices(false); return; }
@@ -127,6 +154,7 @@ async function syncRealtime() {
     }
     realtimeChannel = channel;
     setupQuestionRealtime();
+    setupFavoriteRealtime();
     channel.subscribe(status => {
       if (channel !== realtimeChannel) return;
       realtimeReady = status === 'SUBSCRIBED';
@@ -157,7 +185,7 @@ syncRealtime(); refreshCloudNotices(false);
 
 window.uniloopCloudProductActions = p => {
   const root = $('cloud-product-actions'); if (!root) return;
-  if (cloud.session?.user?.id === p.cloudOwnerId) { root.innerHTML = `<button type="button" class="pill" id="product-own">${p.status === '預約中' ? '查看我的商品' : '編輯商品'}</button>`; $('product-own').onclick = () => window.uniloopCloudMine(); return; }
+  if (cloud.session?.user?.id === p.cloudOwnerId) { root.innerHTML = `<button type="button" class="pill" id="product-own">${p.status === '預約中' ? '查看我的商品' : '編輯商品'}</button>`; $('product-own').onclick = () => p.status === '預約中' ? window.uniloopCloudMine() : window.uniloopCloudEditProduct(p.cloudId, p.id); return; }
   root.innerHTML = `<button type="button" class="ghost" id="product-chat">與賣家聊天</button> ${p.status === '上架中' ? '<button type="button" class="pill" id="product-trade">提出交易申請</button>' : '<p>此商品目前無法提出新申請。</p>'}`;
   $('product-chat').onclick = async () => { try { if (!(await session())) return; const c = await cloud.getOrCreateConversation(p.cloudId, p.cloudOwnerId); await showChat(c.id, p.name); } catch (e) { fail(e); } };
   const trade = $('product-trade'); if (trade) trade.onclick = () => tradeForm(p);
@@ -223,8 +251,9 @@ async function showChat(id, name, refresh = false) {
       box.innerHTML = messagesHtml;
       if (nearBottom) box.scrollTop = box.scrollHeight;
     } else {
-      show(`<h2>${esc(name || conversation.products?.name || '商品')}的聊天室</h2><div id="chat-live-state">${stateHtml}</div><p id="chat-trade-error" class="hint" role="alert"></p><p id="chat-read-error" class="hint" role="status"></p><div class="chat-messages" id="chat-live-messages">${messagesHtml}</div><form id="message-form"><label for="message-text">訊息</label><textarea id="message-text" maxlength="1000" required></textarea><p id="message-error" class="hint" role="alert"></p><button type="submit" class="pill">傳送</button></form>${reloadButton('message-reload')}<button type="button" id="message-back" class="ghost">聊天紀錄</button>`);
+      show(`<h2>${esc(name || conversation.products?.name || '商品')}的聊天室</h2>${window.uniloopOpenPublicProfile?'<button type="button" class="ghost" id="chat-user-profile">查看對方資料與評價</button>':''}<div id="chat-live-state">${stateHtml}</div><p id="chat-trade-error" class="hint" role="alert"></p><p id="chat-read-error" class="hint" role="status"></p><div class="chat-messages" id="chat-live-messages">${messagesHtml}</div><form id="message-form"><label for="message-text">訊息</label><textarea id="message-text" maxlength="1000" required></textarea><p id="message-error" class="hint" role="alert"></p><button type="submit" class="pill">傳送</button></form>${reloadButton('message-reload')}<button type="button" id="message-back" class="ghost">聊天紀錄</button>`);
       activeChat = { id, name, owner: s.user.id, lastRead: null, tradeStatus: latest?.status || null };
+      if ($('chat-user-profile')) $('chat-user-profile').onclick=()=>{const draft=$('message-text')?.value || '', other=mineBuyer ? conversation.seller_id : conversation.buyer_id;window.uniloopOpenPublicProfile(other,async()=>{await showChat(id,name);if(activeChat?.id===id && $('message-text'))$('message-text').value=draft})};
     }
     if (refresh && activeChat) {
       const was = activeChat.tradeStatus;
@@ -297,6 +326,9 @@ window.uniloopCloudTrades = async function() {
   try {
     const s = await session(); if (!s) return;
     const rows = await cloud.listTrades();
+    let reviewFeatureAvailable = false;
+    const completed = (rows || []).find(t=>t.status==='交易完成');
+    if (completed) { try { await cloud.getMyTradeReview(completed.id); reviewFeatureAvailable=true; } catch {} }
     const cards = (rows || []).map((t,i) => {
       const seller = t.seller_id === s.user.id, buyer = t.buyer_id === s.user.id;
       let actions = [];
@@ -305,10 +337,12 @@ window.uniloopCloudTrades = async function() {
       if (buyer && t.status === '已接受') actions = [['買家已確認收貨','確認收貨'],['已取消','取消']];
       if (buyer && t.status === '買家已確認收貨') actions = [['已取消','取消']];
       if (seller && t.status === '買家已確認收貨') actions = [['交易完成','確認完成']];
-      return `<article class="request-card"><strong>${esc(t.products?.name || '商品')}</strong><p>${seller ? '賣家' : '買家'} · ${esc(t.method)} · ${esc(t.status)}</p><button type="button" class="extra-btn" data-trade-chat="${i}">查看聊天室</button> ${actions.map(([status,label]) => `<button type="button" class="extra-btn" data-trade="${i}" data-status="${esc(status)}">${esc(label)}</button> `).join('')}</article>`;
+      return `<article class="request-card"><strong>${esc(t.products?.name || '商品')}</strong><p>${seller ? '賣家' : '買家'} · ${esc(t.method)} · ${esc(t.status)}</p><button type="button" class="extra-btn" data-trade-chat="${i}">查看聊天室</button> ${reviewFeatureAvailable && t.status==='交易完成'?`<button type="button" class="extra-btn" data-review="${i}">評價或修改評價</button>`:''} ${window.uniloopModerationAvailable?`<button type="button" class="extra-btn" data-dispute="${i}">提出爭議</button>`:''} ${actions.map(([status,label]) => `<button type="button" class="extra-btn" data-trade="${i}" data-status="${esc(status)}">${esc(label)}</button> `).join('')}</article>`;
     }).join('');
     show(`<h2>交易紀錄</h2><p>模擬交易，不包含線上付款。</p>${cards || '<p>目前沒有交易紀錄。</p>'}<p id="trades-error" class="hint" role="alert"></p>${reloadButton('trades-reload')}`);
     $('trades-reload').onclick = window.uniloopCloudTrades;
+    document.querySelectorAll('[data-review]').forEach(button => button.onclick=()=>showTradeReview(rows[Number(button.dataset.review)]));
+    document.querySelectorAll('[data-dispute]').forEach(button => button.onclick=()=>{const t=rows[Number(button.dataset.dispute)];window.uniloopSubmitDispute?.(t.id,t.product_id)});
     document.querySelectorAll('[data-trade-chat]').forEach(button => button.onclick = async () => {
       try {
         const t = rows[Number(button.dataset.tradeChat)], chats = await cloud.listConversations();

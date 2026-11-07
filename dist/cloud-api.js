@@ -170,6 +170,20 @@ export class UniLoopCloud {
     return this.authenticatedRequest('/rest/v1/messages', { method:'POST', prefer:'return=representation', body:{ conversation_id:id, sender_id:session.user.id, body:text } });
   }
   listTrades() { return this.authenticatedRequest('/rest/v1/trade_requests?select=*,products(name)&order=created_at.desc'); }
+  getMyTradeReview(id) { return this.authenticatedRequest('/rest/v1/rpc/get_my_trade_review',{method:'POST',body:{p_trade_id:id}}); }
+  saveTradeReview(id,stars,body) { return this.authenticatedRequest('/rest/v1/rpc/save_trade_review',{method:'POST',body:{p_trade_id:id,p_stars:stars,p_body:body}}); }
+  getPublicReviews(id) { return this.request('/rest/v1/rpc/get_public_reviews',{method:'POST',body:{p_user_id:id}}); }
+  listFavoriteNotices() { return this.authenticatedRequest('/rest/v1/favorite_change_notices?select=id,product_id,product_name,kind,old_price,new_price,created_at&read_at=is.null&order=created_at.desc'); }
+  markFavoriteNoticeRead(id) { return this.authenticatedRequest('/rest/v1/favorite_change_notices?id=eq.'+encodeURIComponent(id),{method:'PATCH',body:{read_at:new Date().toISOString()}}); }
+  campusVerified(id) { return this.request('/rest/v1/rpc/uniloop_campus_verified',{method:'POST',body:{p_user_id:id}}); }
+  isAdmin() { return this.authenticatedRequest('/rest/v1/rpc/uniloop_is_admin',{method:'POST',body:{}}); }
+  submitCase(kind,productId,tradeId,reason) { return this.authenticatedRequest('/rest/v1/rpc/uniloop_submit_case',{method:'POST',body:{p_kind:kind,p_product_id:productId,p_trade_id:tradeId,p_reason:reason}}); }
+  adminCases() { return this.authenticatedRequest('/rest/v1/rpc/uniloop_admin_cases',{method:'POST',body:{}}); }
+  adminUpdateCase(id,status,resolution) { return this.authenticatedRequest('/rest/v1/rpc/uniloop_admin_update_case',{method:'POST',body:{p_id:id,p_status:status,p_resolution:resolution}}); }
+  adminUnlist(id,reason) { return this.authenticatedRequest('/rest/v1/rpc/uniloop_admin_unlist',{method:'POST',body:{p_product_id:id,p_reason:reason}}); }
+  adminAudit() { return this.authenticatedRequest('/rest/v1/rpc/uniloop_admin_audit',{method:'POST',body:{}}); }
+  adminProducts() { return this.authenticatedRequest('/rest/v1/rpc/uniloop_admin_products',{method:'POST',body:{}}); }
+  adminMembers() { return this.authenticatedRequest('/rest/v1/rpc/uniloop_admin_members',{method:'POST',body:{}}); }
   async serverTradeNoticesEnabled() { try { return (await this.authenticatedRequest('/rest/v1/rpc/server_trade_notices_enabled', {method:'POST',body:{}})) === true; } catch { return false; } }
   createTrade(productId, method) { return this.authenticatedRequest('/rest/v1/rpc/create_trade_request', { method:'POST', body:{ p_product_id:productId, p_method:method } }); }
   transitionTrade(id, status, reason = null) { return this.authenticatedRequest('/rest/v1/rpc/transition_trade_request', { method:'POST', body:{ p_id:id, p_status:status, p_reason:reason } }); }
