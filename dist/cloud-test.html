@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>UniLoop｜雲端功能測試</title>
+  <style>
+    :root{font-family:system-ui,sans-serif;color:#253a30;background:#f8f8f1}body{max-width:900px;margin:auto;padding:24px}a{color:#234b3c}h1,h2{color:#234b3c}section{background:#fff;border:1px solid #e3e8dc;border-radius:16px;padding:20px;margin:18px 0}label{display:block;margin:12px 0 4px}input,textarea,select{font:inherit;box-sizing:border-box;padding:9px;width:100%;border:1px solid #bccbbf;border-radius:8px}button{font:inherit;border:0;border-radius:8px;padding:10px 16px;background:#234b3c;color:white;cursor:pointer;margin:12px 8px 0 0}button:disabled{opacity:.6;cursor:wait}.notice{background:#fff5df;padding:12px;border-radius:8px}.error{color:#a22222;white-space:pre-wrap}.success{color:#1b683a}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.card{border-top:1px solid #e3e8dc;padding:14px 0}.muted{color:#65766b}[hidden]{display:none!important}
+  </style>
+</head>
+<body>
+<p><a href="./index.html">← 返回原本的 UniLoop</a></p>
+<h1>UniLoop 雲端功能測試</h1>
+<p class="notice">這是獨立測試頁，與原網站的展示帳號及商品分開。圖片功能需先完成雲端儲存設定；聊天、交易與收藏尚未接上。請勿輸入真實個人敏感資訊。</p>
+<p id="notice" role="status" aria-live="polite"></p>
+
+<section id="auth-section">
+  <h2>登入或註冊</h2>
+  <p>若註冊需要信箱確認，須完成驗證才能登入；目前寄信服務仍可能限制收件對象。</p>
+  <form id="auth-form"><label for="email">電子郵件</label><input id="email" type="email" required autocomplete="username" maxlength="254"><label for="password">密碼</label><input id="password" type="password" required minlength="6" autocomplete="current-password"><button type="submit">登入</button><button type="button" id="signup">註冊</button></form>
+</section>
+<section id="account-section" hidden>
+  <h2>雲端帳號</h2><p id="account-label"></p><button type="button" id="logout">登出</button>
+  <h3>公開個人資料</h3><p class="muted">暱稱、學校和地區可被其他人查看，請勿輸入電子郵件等隱私資訊。</p>
+  <form id="profile-form"><label for="display-name">暱稱</label><input id="display-name" required maxlength="30"><div class="row"><div><label for="profile-city">地區</label><input id="profile-city" maxlength="60"></div><div><label for="profile-school">學校</label><input id="profile-school" maxlength="100"></div></div><button>儲存個人資料</button></form>
+</section>
+<section id="product-section" hidden>
+  <h2>新增雲端商品</h2><p class="muted">商品與圖片會公開顯示。照片最多 3 張、每張 1 MB；測試頁暫不支援商品編輯。</p>
+  <form id="product-form"><label for="product-name">商品名稱</label><input id="product-name" required maxlength="100"><label for="product-description">商品描述</label><textarea id="product-description" maxlength="1000"></textarea><label for="product-images">商品照片（選填）</label><input id="product-images" type="file" accept="image/jpeg,image/png,image/webp" multiple><div class="row"><div><label for="category">分類</label><select id="category"><option>課本</option><option>電子產品</option><option>衣物</option><option>家具</option><option>生活用品</option></select></div><div><label for="price">價格（元）</label><input id="price" type="number" required value="0" min="0" max="1000000" step="1"></div><div><label for="city">地區</label><input id="city" required maxlength="60"></div><div><label for="school">學校</label><input id="school" required maxlength="100"></div></div><label for="method">交易方式</label><select id="method"><option>買賣</option><option>交換</option><option>贈送</option></select><button>上架測試商品</button></form>
+</section>
+<section><h2>雲端商品列表</h2><button id="refresh" type="button">重新整理列表</button><div id="products" class="muted">載入中…</div><div id="permission-test" hidden><h3>測試不同帳號的商品權限</h3><p class="notice">請先用 B 帳號登入，並確認列表中有 A 建立的測試商品。測試會對一件非目前帳號的商品送出「原名稱更新」和「刪除」請求。如果刪除權限設定有誤，該測試商品可能真的被刪除，請只在有可丟棄測試商品時使用。</p><button type="button" id="test-permissions">測試商品權限</button><p id="permission-result" role="status" aria-live="polite"></p></div></section>
+<script type="module" src="./cloud-test.js"></script>
+</body></html>
