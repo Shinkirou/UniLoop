@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {cardPolicy} from './dist/market-policy.js';
+const make=(status,own=false,buyer=false,favorite=false)=>cardPolicy({status,own,buyer,favorite});
+assert.deepEqual(make('上架中',true),{visible:true,locked:false,style:'own'});
+assert.deepEqual(make('上架中'),{visible:true,locked:false,style:''});
+assert.deepEqual(make('預約中',true),{visible:true,locked:false,style:'reserved'});
+assert.deepEqual(make('預約中',false,true),{visible:true,locked:false,style:'reserved'});
+assert.deepEqual(make('預約中',false,false,true),{visible:true,locked:true,style:'unavailable'});
+assert.equal(make('預約中').visible,false);
+for(const status of ['下架','交易完成','未知']) for(const own of [true,false]) assert.equal(make(status,own,false,true).visible,false);
+console.log('商品卡片規則測試通過：賣家、買家、收藏者、訪客及下架與完成狀態。');

@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+let shouldLeave = false, prompts = 0, beforeUnload;
+globalThis.window = { confirm: () => { prompts++; return shouldLeave; }, addEventListener: (name, fn) => { if (name === 'beforeunload') beforeUnload = fn; } };
+const {createEditGuard} = await import('./dist/edit-guard.js');
+const name = { id:'cl-name',type:'text',value:'',checked:false };
+const files = { id:'cl-image',type:'file',files:[],checked:false };
+const guard = createEditGuard({elements:[name,files]});
+assert.equal(guard.isDirty(),false); assert.equal(guard.tryLeave(),true); assert.equal(prompts,0);
+name.value = '測試商品'; assert.equal(guard.isDirty(),true); assert.equal(guard.tryLeave(),false); assert.equal(prompts,1);
+let prevented=false; const e={preventDefault(){prevented=true},returnValue:null}; beforeUnload(e);assert.equal(prevented,true);
+shouldLeave=true; assert.equal(guard.tryLeave(),true);
+name.value=''; files.files=[{name:'a.jpg',size:5,lastModified:1},{name:'b.jpg',size:8,lastModified:2}]; assert.equal(guard.isDirty(),true);
+guard.busy=true; assert.equal(guard.tryLeave(),false);guard.busy=false;guard.clear();assert.equal(window.uniloopEditGuard,null);
+console.log('未儲存保護測試通過：文字、多張照片、取消離開、重新整理與儲存中狀態。');
